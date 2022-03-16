@@ -1,68 +1,76 @@
+import { useState } from "react";
+
 const LoginForm = () => {
-    return ( 
-        <form className="bg-white p-10 rounded-lg shadow-lg min-w-full">
-      <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-        Formregister
-      </h1>
-      <div>
-        <label
-          className="text-gray-800 font-semibold block my-3 text-md"
-          for="username"
-        >
-          Username
-        </label>
-        <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-          type="text"
-          name="username"
-          id="username"
-          placeholder="username"
-        />
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const [inputValues, setInputValues] = useState(initialValues);
+
+  const handleChange = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <form className="" onSubmit={handleSubmit}>
+      <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+        <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+          <h1 className="font-bold text-center text-2xl mb-5">Login Form</h1>
+          <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+            <div className="px-5 py-7">
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                E-mail
+              </label>
+              <input
+                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                type="email"
+                name="email"
+                placeholder="Enter Your Email ..."
+                onChange={handleChange}
+                value={inputValues.email}
+              />
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Password
+              </label>
+              <input
+                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                type="password"
+                name="password"
+                placeholder="Enter Your Email ..."
+                onChange={handleChange}
+                value={inputValues.password}
+              />
+              <button
+                className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                type="submit"
+              >
+                <span className="inline-block mr-2">Login</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-4 h-4 inline-block"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label
-          className="text-gray-800 font-semibold block my-3 text-md"
-          for="email"
-        >
-          Email
-        </label>
-        <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-          type="text"
-          name="email"
-          id="email"
-          placeholder="@email"
-        />
-      </div>
-      <div>
-        <label
-          className="text-gray-800 font-semibold block my-3 text-md"
-          for="password"
-        >
-          Password
-        </label>
-        <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-          type="text"
-          name="password"
-          id="password"
-          placeholder="password"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
-      >
-        Register
-      </button>
-      <button
-        type="submit"
-        className="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans"
-      >
-        Login
-      </button>
     </form>
-     );
-}
- 
+  );
+};
+
 export default LoginForm;
