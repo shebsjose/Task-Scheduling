@@ -35,8 +35,8 @@ const RegisterForm = () => {
         <input
           className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
           type="text"
-          name="userName"
           id="username"
+          name="userName"
           placeholder="Enter Your Name ...."
           value={inputValues.userName}
           onChange={handleChange}
@@ -52,8 +52,8 @@ const RegisterForm = () => {
         <input
           className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
           type="email"
-          name="email"
           id="email"
+          name="email"
           placeholder="Enter Your Email ..."
           value={inputValues.email}
           onChange={handleChange}
@@ -69,8 +69,8 @@ const RegisterForm = () => {
         <input
           className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
           type="password"
-          name="password"
           id="password"
+          name="password"
           placeholder="Enter the Password..."
           value={inputValues.password}
           onChange={handleChange}
