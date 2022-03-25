@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../actions/authAction";
+import { registerFetchUser } from "../actions/authAction";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons'
 
@@ -23,7 +23,7 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputValues);
-    dispatch(fetchUser(inputValues));
+    dispatch(registerFetchUser(inputValues));
   };
 
   return (

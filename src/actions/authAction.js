@@ -21,8 +21,8 @@ export const fetchUserFailure = (error) => {
   };
 };
 
-export const fetchUser = (data) => {
-  console.log("fetchUser => ",data);
+export const registerFetchUser = (data) => {
+  console.log("registerFetchUser => ",data);
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
@@ -34,4 +34,20 @@ export const fetchUser = (data) => {
     }
   };
 };
+
+export const loginFetchUser = (data) => {
+  console.log("loginFetchUser => ",data);
+  return async (dispatch) => {
+    try {
+      dispatch(fetchUserRequest());
+       const response = await axios.get(apiEndPoint + "/login", data);
+       console.log(response);
+      dispatch(fetchUserSuccess(response.data));
+    } catch (error) {
+      dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
+    }
+  };
+};
+
+
  

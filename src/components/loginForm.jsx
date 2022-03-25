@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../actions/authAction";
+import { loginFetchUser } from "../actions/authAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,7 +22,7 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputValues);
-    dispatch(fetchUser(inputValues));
+    dispatch(loginFetchUser(inputValues));
   };
 
   return (
