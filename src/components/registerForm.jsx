@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../actions/authAction";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons'
 
 const RegisterForm = () => {
   const initialValues = {
@@ -36,7 +38,7 @@ const RegisterForm = () => {
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="username"
-        >
+        > <FontAwesomeIcon icon={faUser}/>
           Username
         </label>
         <input
@@ -54,6 +56,7 @@ const RegisterForm = () => {
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="email"
         >
+          <FontAwesomeIcon icon={faAt}/>
           Email
         </label>
         <input
@@ -70,7 +73,7 @@ const RegisterForm = () => {
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="password"
-        >
+        > <FontAwesomeIcon icon={faLock}/>
           Password
         </label>
         <input

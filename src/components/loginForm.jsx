@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../actions/authAction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const LoginForm = () => {
   const initialValues = {
@@ -9,8 +11,8 @@ const LoginForm = () => {
   };
 
   const [inputValues, setInputValues] = useState(initialValues);
-  
-  const userLogin = useSelector(state => state.login.user);
+
+  const userLogin = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -21,17 +23,17 @@ const LoginForm = () => {
     e.preventDefault();
     console.log(inputValues);
     dispatch(fetchUser(inputValues));
-  
   };
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <div className="min-h-screen-100vh bg-gray-100 flex flex-col justify-center sm:py-12" >
+      <div className="min-h-screen-100vh bg-gray-100 flex flex-col justify-center sm:py-12">
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
           <h1 className="font-bold text-center text-2xl mb-5">Login Form</h1>
           <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
             <div className="px-5 py-7">
               <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                <FontAwesomeIcon icon={faAt} />
                 E-mail
               </label>
               <input
@@ -43,7 +45,7 @@ const LoginForm = () => {
                 onChange={handleChange}
               />
               <label className="font-semibold text-sm text-gray-600 pb-1 block">
-                Password
+                <FontAwesomeIcon icon={faLock} /> Password
               </label>
               <input
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
