@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../actions/authAction";
 
 const RegisterForm = () => {
   const initialValues = {
@@ -9,12 +11,17 @@ const RegisterForm = () => {
 
   const [inputValues, setInputValues] = useState(initialValues);
 
+  const userRegister = useSelector(state => state.login.user);
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(inputValues);
+    dispatch(fetchUser(inputValues));
   };
 
   return (
@@ -28,7 +35,7 @@ const RegisterForm = () => {
       <div>
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
-          for="username"
+          htmlFor="username"
         >
           Username
         </label>
@@ -45,7 +52,7 @@ const RegisterForm = () => {
       <div>
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
-          for="email"
+          htmlFor="email"
         >
           Email
         </label>
@@ -62,7 +69,7 @@ const RegisterForm = () => {
       <div>
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
-          for="password"
+          htmlFor="password"
         >
           Password
         </label>

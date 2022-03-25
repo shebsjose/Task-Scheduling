@@ -1,4 +1,5 @@
 import axios from "axios";
+const apiEndPoint = "http://localhost:5000/api/user"
 
 export const fetchUserRequest = () => {
   return {
@@ -6,10 +7,10 @@ export const fetchUserRequest = () => {
   };
 };
 
-export const fetchUserSuccess = (users) => {
+export const fetchUserSuccess = (user) => {
   return {
     type: "FETCH_USER_SUCCESS",
-    payload: users,
+    payload: user,
   };
 };
 
@@ -20,14 +21,17 @@ export const fetchUserFailure = (error) => {
   };
 };
 
-export const fetchUser = () => {
+export const fetchUser = (data) => {
+  console.log("fetchUser => ",data);
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
-      const response = await axios.get("");
+       const response = await axios.post(apiEndPoint + "/register", data);
+       console.log(response);
       dispatch(fetchUserSuccess(response.data));
     } catch (error) {
       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
     }
   };
 };
+ 

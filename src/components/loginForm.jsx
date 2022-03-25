@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../actions/authAction";
 
 const LoginForm = () => {
   const initialValues = {
@@ -7,6 +9,9 @@ const LoginForm = () => {
   };
 
   const [inputValues, setInputValues] = useState(initialValues);
+  
+  const userLogin = useSelector(state => state.login.user);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
@@ -14,11 +19,14 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(inputValues);
+    dispatch(fetchUser(inputValues));
+  
   };
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+      <div className="min-h-screen-100vh bg-gray-100 flex flex-col justify-center sm:py-12" >
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
           <h1 className="font-bold text-center text-2xl mb-5">Login Form</h1>
           <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
@@ -58,9 +66,9 @@ const LoginForm = () => {
                   className="w-4 h-4 inline-block"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>

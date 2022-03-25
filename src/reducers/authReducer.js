@@ -1,6 +1,6 @@
 const initialState = {
   loading: null,
-  users: [],
+  user: {},
   error: "",
 };
 
@@ -13,14 +13,15 @@ const loginReducer = (state = initialState, action) => {
       };
     case "FETCH_USER_SUCCESS":
       return {
+        ...state,
         loading: false,
-        users: action.payload,
+        user: action.payload,
         error: "",
       };
     case "FETCH_USER_FAILURE":
       return {
         loading: false,
-        users: [],
+        user : {},
         error: action.payload,
       };
     default:

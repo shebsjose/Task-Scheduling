@@ -1,58 +1,33 @@
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressCard , faArrowRightToArc} from '@fortawesome/free-solid-svg-icons'
 
 const NavBar = () => {
   return (
-    <div className="bg-gray-200 static uppercase font-semibold rounded-lg flex md:flex-col md:ml-1 shadow-lg border-gray-600 justify-around md:h-screen md:w-16 fixed w-screen bottom-0">
-      <div className="md:p-5 p-3 delay-75 duration-500 ease-in-out transform hover:scale-125 hover:-rotate-12">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-black h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke-width="2"
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-          />
-           <NavLink className="nav-link" to="/count" >Count</NavLink>
+    <nav className="w-full py-6 bg-white w-screen">
+    <div className="flex items-center justify-between mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl md:px-2 px-4">
+      <section className="flex items-center text-gray-900 space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M9.504 1.132a1 1 0 01.992 0l1.75 1a1 1 0 11-.992 1.736L10 3.152l-1.254.716a1 1 0 11-.992-1.736l1.75-1zM5.618 4.504a1 1 0 01-.372 1.364L5.016 6l.23.132a1 1 0 11-.992 1.736L4 7.723V8a1 1 0 01-2 0V6a.996.996 0 01.52-.878l1.734-.99a1 1 0 011.364.372zm8.764 0a1 1 0 011.364-.372l1.733.99A1.002 1.002 0 0118 6v2a1 1 0 11-2 0v-.277l-.254.145a1 1 0 11-.992-1.736l.23-.132-.23-.132a1 1 0 01-.372-1.364zm-7 4a1 1 0 011.364-.372L10 8.848l1.254-.716a1 1 0 11.992 1.736L11 10.58V12a1 1 0 11-2 0v-1.42l-1.246-.712a1 1 0 01-.372-1.364zM3 11a1 1 0 011 1v1.42l1.246.712a1 1 0 11-.992 1.736l-1.75-1A1 1 0 012 14v-2a1 1 0 011-1zm14 0a1 1 0 011 1v2a1 1 0 01-.504.868l-1.75 1a1 1 0 11-.992-1.736L16 13.42V12a1 1 0 011-1zm-9.618 5.504a1 1 0 011.364-.372l.254.145V16a1 1 0 112 0v.277l.254-.145a1 1 0 11.992 1.736l-1.735.992a.995.995 0 01-1.022 0l-1.735-.992a1 1 0 01-.372-1.364z" clipRule="evenodd" />
         </svg>
-      </div>
-      <div className="hover:shadow-md p-4 rounded-full duration-1000 ease-in-out transform hover:scale-125 delay-200 hover:rotate-180 text-3xl font-bold text-center bg-gradient-to-br from-purple-400 to-pink-300 md:p-5 ">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-black h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke-width="2"
-            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-          />
-        </svg>
-      </div>
-      <div className="md:p-5 p-3 delay-75 duration-500 ease-in-out transform hover:scale-125 hover:-rotate-12">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-black h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke-width="2"
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-          />
-        </svg>
-      </div>
+        <label className="font-bold text-xl focus:ring focus:ring-purple-500 focus:ring-opacity-25 outline-none rounded-lg">Task Scheduling</label>
+      </section>
+      <section>
+        <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
+          <li className="relative group">
+            <NavLink className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none" to="/register"
+            > <FontAwesomeIcon icon={faAddressCard} />Register</NavLink>
+            <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+          </li>
+          <li className="relative group">
+            <NavLink className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none" to="/login" >
+          Log In</NavLink>
+            <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+          </li>
+        </ul>
+      </section>
     </div>
+  </nav>
   );
 };
 export default NavBar;
