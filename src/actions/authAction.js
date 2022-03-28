@@ -41,7 +41,7 @@ export const loginFetchUser = (data) => {
       dispatch(fetchUserRequest());
        const response = await axios.post(apiEndPoint + "/login", data);
        console.log(response);
-       localStorage.setItem('UserData', JSON.stringify(data))
+       localStorage.setItem('userData', JSON.stringify(data))
       dispatch(fetchUserSuccess(response.data));
     } catch (error) {
       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
