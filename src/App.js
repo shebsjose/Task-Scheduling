@@ -6,7 +6,6 @@ function App() {
 
 useEffect(()=>{
   const getData = JSON.parse(localStorage.getItem('userData'));
-  console.log(getData);
 })
   return <Routers />;
 }
