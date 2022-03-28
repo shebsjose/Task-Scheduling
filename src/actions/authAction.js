@@ -40,7 +40,7 @@ export const loginFetchUser = (data) => {
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
-       const response = await axios.get(apiEndPoint + "/login", data);
+       const response = await axios.post(apiEndPoint + "/login", data);
        console.log(response);
       dispatch(fetchUserSuccess(response.data));
     } catch (error) {
