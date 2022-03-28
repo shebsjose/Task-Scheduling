@@ -36,12 +36,12 @@ export const registerFetchUser = (data) => {
 };
 
 export const loginFetchUser = (data) => {
-  console.log("loginFetchUser => ",data);
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
        const response = await axios.post(apiEndPoint + "/login", data);
        console.log(response);
+       localStorage.setItem('UserData', JSON.stringify(data))
       dispatch(fetchUserSuccess(response.data));
     } catch (error) {
       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
