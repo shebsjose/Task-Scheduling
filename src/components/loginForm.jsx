@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginFetchUser } from "../actions/authAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from 'react-router-dom'
 
 const LoginForm = () => {
   const initialValues = {
@@ -14,22 +15,29 @@ const LoginForm = () => {
 
   const userLogin = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputValues);
-    dispatch(loginFetchUser(inputValues));
+    await dispatch(loginFetchUser(inputValues))
+    .then((res) => {
+      console.log('hello', res);
+      if(res.success){
+        navigate('/home');
+      }
+    })
   };
 
   return (
     <form className="" onSubmit={handleSubmit}>
       <div className="min-h-screen-100vh bg-gray-100 flex flex-col justify-center sm:py-12">
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-          <h1 className="font-bold text-center text-2xl mb-5">Login Form</h1>
+          <h1 className="font-bold text-center text-2xl mb-5">Login</h1>
           <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
             <div className="px-5 py-7">
               <label className="font-semibold text-sm text-gray-600 pb-1 block">

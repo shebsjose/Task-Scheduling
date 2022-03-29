@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -14,6 +15,7 @@ const Routers = () => {
   return (
     <div>
       <Router>
+      <ToastContainer />
       <NavBar/>
         <Routes>
           <Route path="/" element={<Navigate replace to="/home" />} />

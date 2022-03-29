@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { registerFetchUser } from "../actions/authAction";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from 'react-router-dom'
+
 
 const RegisterForm = () => {
   const initialValues = {
@@ -15,6 +17,7 @@ const RegisterForm = () => {
 
   const userRegister = useSelector(state => state.login.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
@@ -23,7 +26,7 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputValues);
-    dispatch(registerFetchUser(inputValues));
+    dispatch(registerFetchUser(inputValues))
   };
 
   return (

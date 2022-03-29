@@ -1,5 +1,6 @@
 import axios from "axios";
-const apiEndPoint = "http://localhost:5000/api/user"
+import { toast } from "react-toastify";
+const apiEndPoint = "http://localhost:5000/api/user";
 
 export const fetchUserRequest = () => {
   return {
@@ -23,28 +24,49 @@ export const fetchUserFailure = (error) => {
 
 export const registerFetchUser = (data) => {
   console.log("registerFetchUser => ",data);
-  return async (dispatch) => {
+  return async () => {
     try {
-      dispatch(fetchUserRequest());
        const response = await axios.post(apiEndPoint + "/register", data);
        console.log(response);
-      dispatch(fetchUserSuccess(response.data));
+      toast.success("Sucessfully Register"); 
     } catch (error) {
-      dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
+      toast.error(error.message);
     }
   };
 };
+
+
+// export const loginFetchUser = (data) => {
+//   return async (dispatch) => {
+//     try {
+//       dispatch(fetchUserRequest());
+//        const response = await axios.post(apiEndPoint + "/login", data);
+//        localStorage.setItem('Token', JSON.stringify(response.data))
+//       dispatch(fetchUserSuccess(response.data));
+//       toast.success("Sucessfully Login");
+//       return { success: true}
+//     } catch (error) {
+//       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
+//       toast.error(error.response.data);
+//       console.log(error.response.data);
+//       return { success: false}
+//     }
+//   };
+// };
 
 export const loginFetchUser = (data) => {
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
        const response = await axios.post(apiEndPoint + "/login", data);
-       console.log(response);
-       localStorage.setItem('userData', JSON.stringify(data))
+       localStorage.setItem('Token', JSON.stringify(response.data))
       dispatch(fetchUserSuccess(response.data));
+      toast.success("Sucessfully Login");
+      return { success: true}
     } catch (error) {
       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
+      toast.error(error.response.data);
+      return { success: false}
     }
   };
 };
