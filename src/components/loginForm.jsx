@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const [inputValues, setInputValues] = useState(initialValues);
 
-  const userLogin = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,8 +26,7 @@ const LoginForm = () => {
     console.log(inputValues);
     await dispatch(loginFetchUser(inputValues))
     .then((res) => {
-      console.log('hello', res);
-      if(res.success){
+      if(res.login){
         navigate('/home');
       }
     })
