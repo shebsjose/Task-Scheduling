@@ -4,8 +4,22 @@ import {
   faAddressCard,
   faArrowRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+import { useSelector } from 'react-redux';
 
-const NavBar = () => {
+const NavBar = ({ token }) => {
+   
+  const user = useSelector(state => state.login.user);
+  console.log("Redux navbar",user);
+
+  const handleClick = () => {
+    localStorage.removeItem("Token");
+  };
+
+ useEffect(()=>{
+  console.log( "NavBAr",localStorage.getItem("Token"));
+ })
+
   return (
     <nav className="w-full py-6 bg-white w-screen">
       <div className="flex items-center justify-between mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl md:px-2 px-4">
@@ -27,28 +41,52 @@ const NavBar = () => {
           </label>
         </section>
         <section>
-          <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
-            <li className="relative group">
-              <NavLink
-                className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
-                to="/register"
-              >
-                {" "}
-                <FontAwesomeIcon icon={faAddressCard} />
-                Register
-              </NavLink>
-              <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
-            </li>
-            <li className="relative group">
-              <NavLink
-                className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
-                to="/login"
-              >
-                <FontAwesomeIcon icon={faArrowRightToBracket} /> Log In
-              </NavLink>
-              <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
-            </li>
-          </ul>
+          {token ? (
+            <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
+              <li className="relative group">
+                <NavLink
+                  className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  to=''
+                >
+                  <FontAwesomeIcon icon={faArrowRightToBracket} />{user.uerName}
+                </NavLink>
+                <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+              </li>
+              <li className="relative group">
+                <NavLink
+                  className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  onClick={handleClick}
+                  to="/login"
+                >
+                  <FontAwesomeIcon icon={faArrowRightToBracket} /> LogOut
+                </NavLink>
+                <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+              </li>
+            </ul>
+          ) : (
+            <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
+              <li className="relative group">
+                <NavLink
+                  className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  to="/register"
+                >
+                  {" "}
+                  <FontAwesomeIcon icon={faAddressCard} />
+                  Register
+                </NavLink>
+                <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+              </li>
+              <li className="relative group">
+                <NavLink
+                  className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  to="/login"
+                >
+                  <FontAwesomeIcon icon={faArrowRightToBracket} /> Log In
+                </NavLink>
+                <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+              </li>
+            </ul>
+          )}
         </section>
       </div>
     </nav>
