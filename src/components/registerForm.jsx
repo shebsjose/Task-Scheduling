@@ -23,10 +23,15 @@ const RegisterForm = () => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputValues);
-    dispatch(registerFetchUser(inputValues))
+    await dispatch(registerFetchUser(inputValues))
+    .then((res) => {
+      if(res.register){
+        navigate('/login');
+      }
+    })
   };
 
   return (
