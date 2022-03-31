@@ -28,45 +28,29 @@ export const registerFetchUser = (data) => {
     try {
        const response = await axios.post(apiEndPoint + "/register", data);
        console.log(response);
-      toast.success("Sucessfully Register"); 
+      toast.success("Sucessfully Register");
+      return { register: true} 
     } catch (error) {
       toast.error(error.message);
+      return { register: false}
     }
   };
 };
 
-
-// export const loginFetchUser = (data) => {
-//   return async (dispatch) => {
-//     try {
-//       dispatch(fetchUserRequest());
-//        const response = await axios.post(apiEndPoint + "/login", data);
-//        localStorage.setItem('Token', JSON.stringify(response.data))
-//       dispatch(fetchUserSuccess(response.data));
-//       toast.success("Sucessfully Login");
-//       return { success: true}
-//     } catch (error) {
-//       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
-//       toast.error(error.response.data);
-//       console.log(error.response.data);
-//       return { success: false}
-//     }
-//   };
-// };
-
-export const loginFetchUser = (data) => {
+export const loginFetchUser = (inputValues) => {
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
-       const response = await axios.post(apiEndPoint + "/login", data);
-       localStorage.setItem('Token', JSON.stringify(response.data))
-      dispatch(fetchUserSuccess(response.data));
+       const response = await axios.post(apiEndPoint + "/login", inputValues);
+       console.log(response);
+       localStorage.setItem('Token', JSON.stringify(response.data.token))
+      dispatch(fetchUserSuccess(response.data.user));
       toast.success("Sucessfully Login");
-      return { success: true}
+      return { login: true}
     } catch (error) {
       dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
       toast.error(error.response.data);
-      return { success: false}
+      return { login: false}
     }
   };
 };
