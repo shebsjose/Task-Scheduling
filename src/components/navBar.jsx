@@ -2,8 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
-  faArrowRightToBracket,
-  faUser
+  faArrowRightToBracket,faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { useSelector } from 'react-redux';
@@ -45,12 +44,12 @@ const NavBar = ({ token }) => {
           {token ? (
             <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
               <li className="relative group">
-                <NavLink
+                <span
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
-                  to=''
-                ><FontAwesomeIcon icon={faUser} />
-                {user.userName}
-                </NavLink>
+                  
+                >
+                  <FontAwesomeIcon icon={faUser} />{user.userName}
+                </span>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
               <li className="relative group">
