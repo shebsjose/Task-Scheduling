@@ -27,7 +27,7 @@ const LoginForm = () => {
     await dispatch(loginFetchUser(inputValues))
     .then((res) => {
       if(res.login){
-        navigate('/home');
+        navigate('/taskpage');
       }
     })
   };
