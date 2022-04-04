@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import NavBar from "./components/navBar.jsx";
+import TaskPage from "./pages/taskPage";
 
 const Routers = ({token}) => {
   return (
@@ -22,6 +23,7 @@ const Routers = ({token}) => {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/taskpage" element={<TaskPage />} />
         </Routes>
       </Router>
     </div>
