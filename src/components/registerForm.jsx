@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  registerUser } from "../actions/authAction";
+import {  registerUser } from "../api/authApi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from 'react-router-dom'
