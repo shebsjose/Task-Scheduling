@@ -15,13 +15,13 @@ const initialState = {
         return {
           ...state,
           loading: false,
-          user: action.payload,
+          task: action.payload,
           error: "",
         };
       case "FETCH_TASK_FAILURE":
         return {
           loading: false,
-          user : {},
+          task : {},
           error: action.payload,
         };
       default:

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-const apiEndPoint = "http://localhost:5000/api/user";
+const apiEndPoint = "http://localhost:5000/api/auth";
 
 export const fetchUserRequest = () => {
   return {
@@ -22,8 +22,8 @@ export const fetchUserFailure = (error) => {
   };
 };
 
-export const registerFetchUser = (data) => {
-  console.log("registerFetchUser => ",data);
+export const registerUser = (data) => {
+  console.log("registerUser => ",data);
   return async () => {
     try {
        const response = await axios.post(apiEndPoint + "/register", data);
@@ -37,7 +37,7 @@ export const registerFetchUser = (data) => {
   };
 };
 
-export const loginFetchUser = (inputValues) => {
+export const loginUser = (inputValues) => {
   return async (dispatch) => {
     try {
       dispatch(fetchUserRequest());
