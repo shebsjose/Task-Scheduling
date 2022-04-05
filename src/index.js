@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
-
 import App from './App';
 import { createStore, applyMiddleware, compose} from 'redux'
 import allReducer from './reducers/allReducer';

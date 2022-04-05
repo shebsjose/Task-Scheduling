@@ -1,7 +1,11 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {getAllTask} from "../api/taskApi";
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 import { v4 as uuid } from 'uuid';
+
 
 const itemsFromBackend = [
     { id: uuid(), content: "Task 1" },
@@ -68,6 +72,13 @@ const itemsFromBackend = [
   
 
 const Card = () => {
+
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    dispatch(getAllTask())
+  },[])
+
     const [columns, setColumns] = useState(columnsFromBackend);
   return (
       

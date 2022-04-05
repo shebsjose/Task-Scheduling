@@ -3,7 +3,7 @@ import { Dialog,Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  createTask, getAllUser } from "../actions/taskAction";
+import {  createTask, getAllUser } from "../api/taskApi";
 import ListBox from './listBox';
 import { useEffect } from 'react';
 
