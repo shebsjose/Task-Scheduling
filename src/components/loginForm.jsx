@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginFetchUser } from "../actions/authAction";
+import { loginUser } from "../actions/authAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from 'react-router-dom'
@@ -24,7 +24,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputValues);
-    await dispatch(loginFetchUser(inputValues))
+    await dispatch(loginUser(inputValues))
     .then((res) => {
       if(res.login){
         navigate('/taskpage');
