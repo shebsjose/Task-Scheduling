@@ -21,12 +21,13 @@ export const fetchTaskRequest = () => {
     };
   };
   
-  export const fetchUser = () => {
+  export const createTask = (textValues) => {
     return async  dispatch => {
         try {
             dispatch(fetchTaskRequest())
             console.log('request');
-            const response = await axios.get(apiEndPoint);
+            const response = await axios.post(apiEndPoint + "/create", textValues);
+            console.log(response);
             dispatch(fetchTaskSuccess(response.data));
           }
           catch(error) {
@@ -34,5 +35,22 @@ export const fetchTaskRequest = () => {
             dispatch(fetchTaskFailure(error.message))
           }
           
+}
+}
+
+export const getAllUser = () => {
+  return async  dispatch => {
+      try {
+          dispatch(fetchTaskRequest())
+          console.log('request');
+          const response = await axios.get(apiEndPoint + "/user",);
+          console.log(response);
+          dispatch(fetchTaskSuccess(response.data));
+        }
+        catch(error) {
+            console.log('error');
+          dispatch(fetchTaskFailure(error.message))
+        }
+        
 }
 }
