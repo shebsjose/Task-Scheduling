@@ -6,7 +6,6 @@ function App() {
  
   const [token, setToken]=useState('');
    
-  
 useEffect(()=>{
    const token = JSON.parse(localStorage.getItem('Token'));
    setToken(token);
