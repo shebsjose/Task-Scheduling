@@ -96,7 +96,7 @@ const RegisterForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
+        className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans "
       >
         Register
       </button>
