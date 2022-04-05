@@ -1,15 +1,41 @@
-import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline'
+import { Fragment, useRef} from 'react'
+import { Dialog,Transition } from '@headlessui/react'
+import { ExclamationIcon } from '@heroicons/react/outline';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {  createTask, getAllUser } from "../actions/taskAction";
+import ListBox from './listBox';
+import { useEffect } from 'react';
+
 
 const CreateTaskModel = ({open, setOpen}) => {
   const cancelButtonRef = useRef(null)
   console.log("CreateTaskModel");
 
-  const handleChange = () =>{
-    console.log('hello Text area');
+  const initialValues = {
+    description :"",
+    user : "sheba"
+  };
+
+  const [textValues, setTextValues] = useState(initialValues);
+
+  const userText = useSelector(state => state.task.user);
+  const dispatch = useDispatch();
+
+  const handleChange = (e) =>{
+    setTextValues({ ...textValues, [e.target.name]: e.target.value });
   }
-  
+
+  const handleSubmit =(e) =>{
+    e.preventDefault();
+    console.log(textValues);
+     dispatch(createTask(textValues))
+    setOpen(false);
+  }
+  useEffect(()=>{
+    dispatch(getAllUser())
+ },[]);
+ 
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -41,28 +67,30 @@ const CreateTaskModel = ({open, setOpen}) => {
           >
             <div className="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
+                <div className="sm:items-start">
             
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h1" className="text-lg leading-6 font-medium text-gray-900">
                       Create Your Task
                     </Dialog.Title>
                     <div className="mt-2">
-                      <textArea className="text-sm text-gray-500 outline-none width: 367px"
-                      onChange={handleChange}
+                      <textarea className="text-sm text-gray-500 outline-none width: 367px"
                       placeholder="Please Add Your Task Here..."
+                      onChange={handleChange}
+                      name="description"
+                      value={textValues.description}
                       >
-                      
-                      </textArea>
+                      </textarea>
                     </div>
+                    <ListBox />
                   </div>
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-600 text-base font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:ml-3 sm:w-auto sm:text-sm hover:bg-sky-700"
+                  onClick={(event) => handleSubmit(event)}
                 >
                   Submit
                 </button>
