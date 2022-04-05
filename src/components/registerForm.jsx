@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { registerFetchUser } from "../actions/authAction";
+import {  registerUser } from "../actions/authAction";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from 'react-router-dom'
@@ -26,7 +26,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputValues);
-    await dispatch(registerFetchUser(inputValues))
+    await dispatch(registerUser(inputValues))
     .then((res) => {
       if(res.register){
         navigate('/login');
