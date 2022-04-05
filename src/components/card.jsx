@@ -124,7 +124,7 @@ const Card = () => {
                                       minHeight: "79px",
                                       borderRadius: '25px',
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
+                                        ? "#6366F1"
                                         : "#456C86",
                                       color: "white",
                                       ...provided.draggableProps.style
