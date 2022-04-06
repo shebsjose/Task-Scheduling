@@ -1,6 +1,6 @@
 const initialState = {
     loading: null,
-    task: {},
+    task: [],
     error: "",
   };
   
@@ -21,7 +21,7 @@ const initialState = {
       case "FETCH_TASK_FAILURE":
         return {
           loading: false,
-          task : {},
+          task : [],
           error: action.payload,
         };
       default:
