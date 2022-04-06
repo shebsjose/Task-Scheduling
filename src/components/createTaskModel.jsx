@@ -1,44 +1,48 @@
-import { Fragment, useRef} from 'react'
-import { Dialog,Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline';
+import { Fragment, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {  createTask, getAllUser } from "../api/taskApi";
-import ListBox from './listBox';
-import { useEffect } from 'react';
+import { createTask } from "../api/taskApi";
+import {getAllUser} from '../api/authApi'
+import ListBox from "./listBox";
+import { useEffect } from "react";
 
-
-const CreateTaskModel = ({open, setOpen}) => {
-  const cancelButtonRef = useRef(null)
-  console.log("CreateTaskModel");
+const CreateTaskModel = ({ open, setOpen }) => {
+  const cancelButtonRef = useRef(null);
 
   const initialValues = {
-    description :"",
-    user : "sheba"
+    description: "",
+    selectedUser :''
   };
 
   const [textValues, setTextValues] = useState(initialValues);
 
-  const userText = useSelector(state => state.task.user);
+  useEffect(() => {
+    dispatch(getAllUser());
+  }, []);
+
+  const userText = useSelector((state) => state.task.user);
   const dispatch = useDispatch();
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setTextValues({ ...textValues, [e.target.name]: e.target.value });
-  }
+  };
 
-  const handleSubmit =(e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(textValues);
-     dispatch(createTask(textValues))
+    dispatch(createTask(textValues));
     setOpen(false);
-  }
-  useEffect(()=>{
-    dispatch(getAllUser())
- },[]);
- 
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
+      <Dialog
+        as="div"
+        className="fixed z-10 inset-0 overflow-y-auto"
+        initialFocus={cancelButtonRef}
+        onClose={setOpen}
+      >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -53,7 +57,10 @@ const CreateTaskModel = ({open, setOpen}) => {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+          <span
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child
@@ -68,19 +75,21 @@ const CreateTaskModel = ({open, setOpen}) => {
             <div className="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:items-start">
-            
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <Dialog.Title as="h1" className="text-lg leading-6 font-medium text-gray-900">
+                    <Dialog.Title
+                      as="h1"
+                      className="text-lg leading-6 font-medium text-gray-900"
+                    >
                       Create Your Task
                     </Dialog.Title>
                     <div className="mt-2">
-                      <textarea className="text-sm text-gray-500 outline-none width: 367px"
-                      placeholder="Please Add Your Task Here..."
-                      onChange={handleChange}
-                      name="description"
-                      value={textValues.description}
-                      >
-                      </textarea>
+                      <textarea
+                        className="text-sm text-gray-500 outline-none width: 367px"
+                        placeholder="Please Add Your Task Here..."
+                        onChange={handleChange}
+                        name="description"
+                        value={textValues.description}
+                      ></textarea>
                     </div>
                     <ListBox />
                   </div>

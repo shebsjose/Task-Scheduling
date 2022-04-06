@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllUser } from "../api/authApi";
 
 const ListBox = () => {
   const options = [
@@ -8,9 +10,13 @@ const ListBox = () => {
     { label: 'Meat', value: 'meat' },
   ];
 
-  const [value, setValue] = useState('fruit');
+  const [value, setValue] = useState('');
+  const task = useSelector(state => state.task.task);
+  console.log(task);
+  const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleChange =  async (event) => {
+    await dispatch(getAllUser())
     setValue(event.target.value);
   };
 
@@ -23,8 +29,8 @@ const ListBox = () => {
     <select 
         className="block appearance-none w-max bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         value={value} onChange={handleChange}>
-          {options.map((option) => (
-            <option value={option.value}>{option.label}</option>
+          {options.map((option,index) => (
+            <option key={index} value={option.value}>{option.label}</option>
           ))}
         </select>
       <div className="mt-6 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
