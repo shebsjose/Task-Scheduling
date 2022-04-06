@@ -5,10 +5,10 @@ export const fetchTaskRequest = () => {
     };
   };
   
-  export const fetchTaskSuccess = (user) => {
+  export const fetchTaskSuccess = (task) => {
     return {
       type: "FETCH_TASK_SUCCESS",
-      payload: user,
+      payload: task,
     };
   };
   
