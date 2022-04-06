@@ -9,7 +9,6 @@ function App() {
 useEffect(()=>{
    const token = JSON.parse(localStorage.getItem('Token'));
    setToken(token);
-   console.log('App',token);
 },[]);
 
   return <Routers token ={token}/>;

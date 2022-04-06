@@ -23,7 +23,6 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValues);
     await dispatch(loginUser(inputValues))
     .then((res) => {
       if(res.login){

@@ -10,14 +10,13 @@ import { useSelector } from 'react-redux';
 const NavBar = ({ token }) => {
    
   const user = useSelector(state => state.login.user);
-  console.log("Redux navbar",user);
 
   const handleClick = () => {
     localStorage.removeItem("Token");
   };
 
  useEffect(()=>{
-  console.log( "NavBAr",localStorage.getItem("Token"));
+ localStorage.getItem("Token");
  })
 
   return (

@@ -25,7 +25,6 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValues);
     await dispatch(registerUser(inputValues))
     .then((res) => {
       if(res.register){
