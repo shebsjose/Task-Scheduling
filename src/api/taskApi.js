@@ -27,13 +27,3 @@ export const getAllTask = (task) => {
 };
 
 
-export const getAllUser = () => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(apiEndPoint + "/users");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
