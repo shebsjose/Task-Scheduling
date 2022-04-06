@@ -6,11 +6,9 @@ import {fetchUserRequest, fetchUserSuccess, fetchUserFailure } from "../actions/
 const apiEndPoint = "http://localhost:5000/api/auth";
 
 export const registerUser = (data) => {
-    console.log("registerUser => ",data);
     return async () => {
       try {
-         const response = await axios.post(apiEndPoint + "/register", data);
-         console.log(response);
+        await axios.post(apiEndPoint + "/register", data);
         toast.success("Sucessfully Register");
         return { register: true} 
       } catch (error) {
@@ -24,10 +22,10 @@ export const registerUser = (data) => {
     return async (dispatch) => {
       try {
         dispatch(fetchUserRequest());
-         const response = await axios.post(apiEndPoint + "/login", inputValues);
-         console.log(response);
-         localStorage.setItem('Token', JSON.stringify(response.data.token))
-        dispatch(fetchUserSuccess(response.data.user));
+         const { data } = await axios.post(apiEndPoint + "/login", inputValues);
+        const { token, user} = data;
+         localStorage.setItem('Token', JSON.stringify(token))
+        dispatch(fetchUserSuccess(user));
         toast.success("Sucessfully Login");
         return { login: true}
       } catch (error) {
