@@ -3,24 +3,26 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTask } from "../api/taskApi";
-import {getAllUser} from '../api/authApi'
+import {getAllUser} from '../api/usersApi'
 import ListBox from "./listBox";
 import { useEffect } from "react";
 
 const CreateTaskModel = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
 
-  const initialValues = {
-    description: "",
-    selectedUser :''
-  };
-
-  const [textValues, setTextValues] = useState(initialValues);
-
   useEffect(() => {
     dispatch(getAllUser());
   }, []);
 
+  const users = useSelector((state) => state.users.userTask);
+  console.log({users});
+
+  const initialValues = {
+    description: "",
+    selectedUser :""
+  };
+  const [textValues, setTextValues] = useState(initialValues);
+  
   const userText = useSelector((state) => state.task.user);
   const dispatch = useDispatch();
 
@@ -34,6 +36,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
     dispatch(createTask(textValues));
     setOpen(false);
   };
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -91,7 +94,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
                         value={textValues.description}
                       ></textarea>
                     </div>
-                    <ListBox />
+                    <ListBox users={users} setTextValues={setTextValues}/>
                   </div>
                 </div>
               </div>
