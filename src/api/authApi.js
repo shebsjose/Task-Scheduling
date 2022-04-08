@@ -36,12 +36,4 @@ export const registerUser = (data) => {
     };
   };
 
-  export const getAllUser = () => {
-    return async (dispatch) => {
-      try {
-        const response = await axios.get(apiEndPoint + "/get-user");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  };
+  

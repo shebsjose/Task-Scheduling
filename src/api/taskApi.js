@@ -13,11 +13,11 @@ export const createTask = (textValues) => {
 };
 
 
-export const getAllTask = (task) => {
+export const getAllTask = () => {
   return async (dispatch) => {
     try {
       dispatch(fetchTaskRequest());
-      const { data } = await axios.get(apiEndPoint + "/all-task", task);
+      const { data } = await axios.get(apiEndPoint + "/all-task");
       dispatch(fetchTaskSuccess(data));
     } catch (error) {
       console.log(error);
