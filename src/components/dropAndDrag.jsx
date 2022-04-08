@@ -114,6 +114,7 @@ const DropAndDown = ({ allTask }) => {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     style={{
+                                      textAlign: "center",
                                       userSelect: "none",
                                       padding: 16,
                                       margin: "27px 5px 18px",
@@ -121,7 +122,7 @@ const DropAndDown = ({ allTask }) => {
                                       borderRadius: "25px",
                                       backgroundColor: snapshot.isDragging
                                         ? "#6366F1"
-                                        : "#456C86",
+                                        : "#4F46E5",
                                       color: "white",
                                       ...provided.draggableProps.style,
                                     }}
