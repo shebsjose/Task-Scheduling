@@ -11,21 +11,25 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import NavBar from "./components/navBar.jsx";
 import TaskPage from "./pages/taskPage";
+import ProtectedRoute from "./components/protectedRoute";
+import NotFound from "./components/notfound";
 
-const Routers = ({token}) => {
+const Routers = ({ token }) => {
   return (
     <div>
-      <Router>
-      <ToastContainer />
-      <NavBar token={token}/>
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/taskpage" element={<TaskPage />} />
-        </Routes>
-      </Router>
+        <Router>
+          <ToastContainer />
+          <NavBar token={token} />
+          <Routes>
+              
+                <Route path="/" element={<Navigate replace to="/home" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/not-found" element={<NotFound/>} />
+                {/* <ProtectedRoute exact path="" element={<TaskPage />} /> */}
+          </Routes>
+        </Router>
     </div>
   );
 };
