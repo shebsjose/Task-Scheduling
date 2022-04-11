@@ -1,12 +1,6 @@
-import { useState } from "react";
-
-const ListBox = ({users, setTextValues}) => {
-
-  const [select, setSelect] = useState('');
-  
-  const handleChange =  (event) => {
-    console.log(select);
-    setTextValues({...textValues.selectedUser,event.target.value});
+const ListBox = ({ users, select, setSelect }) => {
+  const handleChange = (event) => {
+    setSelect(event.target.value);
   };
 
   return (
@@ -21,10 +15,9 @@ const ListBox = ({users, setTextValues}) => {
           onChange={handleChange}
         >
           {users.map((values, index) => (
-            <option key={index}  value={values.userName}>
+            <option key={index} value={values.userName}>
               {values.userName}
             </option>
-        
           ))}
         </select>
         <div className="mt-6 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

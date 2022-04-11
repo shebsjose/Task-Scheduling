@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTask } from "../api/taskApi";
-import {getAllUser} from '../api/usersApi'
+import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
 
@@ -15,28 +15,23 @@ const CreateTaskModel = ({ open, setOpen }) => {
   }, []);
 
   const users = useSelector((state) => state.users.userTask);
-  console.log({users});
+  console.log({ users });
 
-  const initialValues = {
-    description: "",
-    selectedUser :""
-  };
-  const [textValues, setTextValues] = useState(initialValues);
-  
+  const [desc, setDesc] = useState("");
+  const [select, setSelect] = useState("");
+
   const userText = useSelector((state) => state.task.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setTextValues({ ...textValues, [e.target.name]: e.target.value });
+    setDesc(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(textValues);
-    dispatch(createTask(textValues));
+    dispatch(createTask({ desc, select }));
     setOpen(false);
   };
-
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -91,10 +86,14 @@ const CreateTaskModel = ({ open, setOpen }) => {
                         placeholder="Please Add Your Task Here..."
                         onChange={handleChange}
                         name="description"
-                        value={textValues.description}
+                        value={desc}
                       ></textarea>
                     </div>
-                    <ListBox users={users} setTextValues={setTextValues}/>
+                    <ListBox
+                      users={users}
+                      select={select}
+                      setSelect={setSelect}
+                    />
                   </div>
                 </div>
               </div>
