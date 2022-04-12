@@ -3,16 +3,15 @@ import { fetchTaskRequest, fetchTaskSuccess, fetchTaskFailure } from "../actions
 const apiEndPoint = "http://localhost:5000/api/task";
 
 export const createTask = (textValues) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await axios.post(apiEndPoint + "/create", textValues);
+      return {res : true}
     } catch (error) {
       console.log(error);
     }
   };
 };
-
-
 export const getAllTask = () => {
   return async (dispatch) => {
     try {
@@ -25,5 +24,20 @@ export const getAllTask = () => {
     }
   };
 };
+
+export const changeTaskStatus = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchTaskRequest());
+      const { data } = await axios.patch(apiEndPoint + "/change-status");
+      dispatch(fetchTaskSuccess(data));
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
+    }
+  };
+};
+
+
 
 
