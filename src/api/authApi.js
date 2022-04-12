@@ -9,10 +9,26 @@ export const registerUser = (data) => {
     return async () => {
       try {
         await axios.post(apiEndPoint + "/register", data);
-        toast.success("Sucessfully Register");
+        toast.success('Successfully Register', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         return { register: true} 
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error.response.data, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         return { register: false}
       }
     };
@@ -26,11 +42,27 @@ export const registerUser = (data) => {
         const { token, user} = data;
          localStorage.setItem('Token', JSON.stringify(token))
         dispatch(fetchUserSuccess(user));
-        toast.success("Sucessfully Login");
+        toast.success('Successfully Login', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         return { login: true}
       } catch (error) {
         dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
-        toast.error(error.response.data);
+        toast.error(error.response.data, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         return { login: false}
       }
     };
