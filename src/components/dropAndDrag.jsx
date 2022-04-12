@@ -1,8 +1,11 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeTaskStatus } from "../api/taskApi";
 
 const DropAndDown = ({ allTask }) => {
+  const dispatch = useDispatch();
   const [columns, setColumns] = useState({
     [uuid()]: {
       name: "Requested",
@@ -25,13 +28,75 @@ const DropAndDown = ({ allTask }) => {
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-
+  
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
+
+      console.log(removed);
+      if(removed.taskStatus === "requested") {
+        if(destColumn.name === "To do"){
+          removed.taskStatus = "todo";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "In Progress"){
+          removed.taskStatus = "progress";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "Done"){
+          removed.taskStatus = "done";
+          dispatch(changeTaskStatus(removed));
+        }
+      }
+
+      if(removed.taskStatus === "todo") {
+        if(destColumn.name === "Requested"){
+          removed.taskStatus = "requested";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "In Progress"){
+          removed.taskStatus = "progress";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "Done"){
+          removed.taskStatus = "done";
+          dispatch(changeTaskStatus(removed));
+        }
+      }
+
+      if(removed.taskStatus === "progress") {
+        if(destColumn.name === "To do"){
+          removed.taskStatus = "todo";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "Requested"){
+          removed.taskStatus = "requested";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "Done"){
+          removed.taskStatus = "done";
+          dispatch(changeTaskStatus(removed));
+        }
+      }
+
+      if(removed.taskStatus === "done") {
+        if(destColumn.name === "To do"){
+          removed.taskStatus = "todo";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "Requested"){
+          removed.taskStatus = "requested";
+          dispatch(changeTaskStatus(removed));
+        }
+        if(destColumn.name === "In Progress"){
+          removed.taskStatus = "progress";
+          dispatch(changeTaskStatus(removed));
+        }
+      }
+
       destItems.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
