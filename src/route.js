@@ -27,6 +27,7 @@ const Routers = ({ token }) => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/not-found" element={<NotFound/>} />
+                <Route path="/task-page" element={<TaskPage/>} />
                 {/* <ProtectedRoute exact path="" element={<TaskPage />} /> */}
           </Routes>
         </Router>
