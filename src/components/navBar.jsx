@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
-  faArrowRightToBracket,faUser
+  faArrowRightToBracket,faUser, faClipboardCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { useSelector } from 'react-redux';
@@ -58,6 +58,16 @@ const NavBar = ({ token }) => {
                   to="/login"
                 >
                   <FontAwesomeIcon icon={faArrowRightToBracket} /> LogOut
+                </NavLink>
+                <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+              </li>
+              <li className="relative group">
+                <NavLink
+                  className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  onClick={handleClick}
+                  to="/task-page"
+                >
+                <FontAwesomeIcon icon={faClipboardCheck} />Task
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
