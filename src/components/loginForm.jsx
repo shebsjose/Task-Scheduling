@@ -26,7 +26,7 @@ const LoginForm = () => {
     await dispatch(loginUser(inputValues))
     .then((res) => {
       if(res.login){
-        navigate('/taskpage');
+        navigate('/home');
       }
     })
   };
