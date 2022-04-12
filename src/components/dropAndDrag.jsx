@@ -6,19 +6,19 @@ const DropAndDown = ({ allTask }) => {
   const [columns, setColumns] = useState({
     [uuid()]: {
       name: "Requested",
-      items: allTask,
+      items: allTask.filter(item => item.taskStatus === "requested"),
     },
     [uuid()]: {
       name: "To do",
-      items: [],
+      items: allTask.filter(item => item.taskStatus === "todo")
     },
     [uuid()]: {
       name: "In Progress",
-      items: [],
+      items: allTask.filter(item => item.taskStatus === "In progress"),
     },
     [uuid()]: {
       name: "Done",
-      items: [],
+      items: allTask.filter(item => item.taskStatus === "done"),
     },
   });
 
@@ -58,7 +58,7 @@ const DropAndDown = ({ allTask }) => {
       });
     }
   };
-
+  
   return (
     <div
       style={{
