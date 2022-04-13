@@ -30,14 +30,6 @@ const CreateTaskModel = ({ open, setOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createTask({ description, user:select}))
-    .then((res) =>{
-      console.log(res);
-      if(res){
-        dispatch(getAllTask())
-      }
-    })
-      dispatch(getAllTask())
-    console.log({ description, user:select});
     setOpen(false);
   };
 
