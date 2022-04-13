@@ -1,4 +1,12 @@
-const Home = () => {
+import { useEffect } from "react";
+
+const Home = ({ setToken }) => {
+  
+  useEffect(() => {
+    const token = localStorage.getItem('Token');
+    setToken(token)
+  }, []);
+
   return (
     <div>
       <div className="h-screen w-full bg-gray-50 flex justify-center items-center flex-col p-2">
