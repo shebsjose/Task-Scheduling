@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     await dispatch(loginUser(inputValues))
     .then((res) => {
-      if(res.login){
+      if(res){
         navigate('/home');
       }
     })
