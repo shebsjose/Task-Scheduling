@@ -13,7 +13,6 @@ const LoginForm = () => {
 
   const [inputValues, setInputValues] = useState(initialValues);
 
-  const user = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
