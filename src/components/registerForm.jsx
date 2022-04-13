@@ -15,7 +15,6 @@ const RegisterForm = () => {
 
   const [inputValues, setInputValues] = useState(initialValues);
 
-  const userRegister = useSelector(state => state.login.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
