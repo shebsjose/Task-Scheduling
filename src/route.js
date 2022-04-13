@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,24 +13,35 @@ import NavBar from "./components/navBar.jsx";
 import TaskPage from "./pages/taskPage";
 import ProtectedRoute from "./components/protectedRoute";
 import NotFound from "./components/notfound";
+import jwt_decode from "jwt-decode";
 
-const Routers = ({ token }) => {
+const Routers = () => {
+
+  const [token, setToken] = useState(null);
+  const [loginUser, setLoginUser] = useState(null);
+
+  useEffect(() => {
+    if(token) {
+      const decoded = jwt_decode(token);
+      setLoginUser(decoded.user);
+    }
+  }, [token]);
+
   return (
     <div>
-        <Router>
-          <ToastContainer />
-          <NavBar token={token} />
-          <Routes>
-              
-                <Route path="/" element={<Navigate replace to="/home" />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/not-found" element={<NotFound/>} />
-                <Route path="/task-page" element={<TaskPage/>} />
-                {/* <ProtectedRoute exact path="" element={<TaskPage />} /> */}
-          </Routes>
-        </Router>
+      <Router>
+        <ToastContainer />
+        <NavBar token={token} loginUser={loginUser} />
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="/home" element={<Home setToken={setToken} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="/task-page" element={<TaskPage />} />
+          {/* <ProtectedRoute exact path="" element={<TaskPage />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 };
