@@ -31,7 +31,7 @@ const Routers = () => {
     <div>
       <Router>
         <ToastContainer />
-        <NavBar token={token} loginUser={loginUser} />
+        <NavBar token={token} loginUser={loginUser} setToken={setToken}/>
         <Routes>
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<Home setToken={setToken} />} />
