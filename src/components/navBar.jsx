@@ -4,20 +4,15 @@ import {
   faAddressCard,
   faArrowRightToBracket,faUser, faClipboardCheck
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
 import { useSelector } from 'react-redux';
 
-const NavBar = ({ token }) => {
+const NavBar = ({ token, loginUser }) => {
    
   const user = useSelector(state => state.login.user);
 
-  const handleClick = () => {
+  const handleLogout = () => {
     localStorage.removeItem("Token");
   };
-
- useEffect(()=>{
- localStorage.getItem("Token");
- })
 
   return (
     <nav className="w-full py-6 bg-white w-screen">
@@ -47,14 +42,14 @@ const NavBar = ({ token }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   
                 >
-                  <FontAwesomeIcon icon={faUser} />{user.userName}
+                  <FontAwesomeIcon icon={faUser} />{user.userName || loginUser?.userName}
                 </span>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
               <li className="relative group">
                 <NavLink
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
-                  onClick={handleClick}
+                  onClick={handleLogout}
                   to="/login"
                 >
                   <FontAwesomeIcon icon={faArrowRightToBracket} /> LogOut
@@ -64,7 +59,6 @@ const NavBar = ({ token }) => {
               <li className="relative group">
                 <NavLink
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
-                  onClick={handleClick}
                   to="/task-page"
                 >
                 <FontAwesomeIcon icon={faClipboardCheck} />Task
