@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask, getAllTask } from "../api/taskApi";
+import { createTask } from "../api/taskApi";
 import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
@@ -25,6 +25,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
 
   const handleChange = (e) => {
     setDescription(e.target.value);
+    
   };
 
   const handleSubmit = (e) => {
