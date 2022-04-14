@@ -44,6 +44,20 @@ export const changeTaskStatus = (task) => {
   };
 };
 
+export const deleteTask= (task) => {
+  console.log(task);
+  return async (dispatch) => {
+    try {
+      dispatch(fetchTaskRequest());
+      const { data } = await axios.delete(apiEndPoint + "/change-status/" + task._id );
+      dispatch(fetchTaskSuccess(data));
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
+    }
+  };
+};
+
 
 
 
