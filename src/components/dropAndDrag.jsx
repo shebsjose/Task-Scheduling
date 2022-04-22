@@ -1,10 +1,9 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeTaskStatus,deleteTask,getAllTask } from "../api/taskApi";
+import DeleteEdit from "./deleteEdit";
 
 const DropAndDown = ({ allTask }) => {
   useEffect(() => {
@@ -203,9 +202,7 @@ const DropAndDown = ({ allTask }) => {
                                   >
                                     Task : {item.description}
                                     <p> Assigned User : {item.user}</p>
-                                    <FontAwesomeIcon icon={faTrash}  style={{paddingRight :"35px", marginTop: "15px" , cursor: "pointer" }}
-                                     onClick={() => handleDelete(item.id)}/> 
-                                    <FontAwesomeIcon icon={faPenToSquare} style={{paddingLeft :"35px", marginTop: "1px" , cursor: "pointer"}}/>
+                                   <DeleteEdit  handleDelete={handleDelete}/>
                                   </div>
                                 );
                               }}
