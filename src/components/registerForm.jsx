@@ -26,7 +26,7 @@ const RegisterForm = () => {
     e.preventDefault();
     await dispatch(registerUser(inputValues))
     .then((res) => {
-      if(res.register){
+      if(res){
         navigate('/login');
       }
     })

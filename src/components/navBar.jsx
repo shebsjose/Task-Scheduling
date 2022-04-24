@@ -5,13 +5,20 @@ import {
   faArrowRightToBracket,faUser, faClipboardCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from 'react-redux';
+import { useEffect } from "react";
 
-const NavBar = ({ token, loginUser }) => {
-   
+const NavBar = ({ token, loginUser, setToken  }) => {
+
+  useEffect(() => {
+    const token = localStorage.getItem('Token');
+    setToken(token)
+  }, [setToken, token]);
+
   const user = useSelector(state => state.login.user);
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
+    window.location.href = "/home";
   };
 
   return (

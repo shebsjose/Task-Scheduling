@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { loginUser } from "../api/authApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     await dispatch(loginUser(inputValues))
     .then((res) => {
-      if(res.login){
+      if(res){
         navigate('/home');
       }
     })

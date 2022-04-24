@@ -1,10 +1,15 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus } from "../api/taskApi";
+import { changeTaskStatus,deleteTask,getAllTask } from "../api/taskApi";
+import DeleteEdit from "./deleteEdit";
 
 const DropAndDown = ({ allTask }) => {
+  useEffect(() => {
+     dispatch(getAllTask());
+  },[]);
+ 
   const dispatch = useDispatch();
   const [columns, setColumns] = useState({
     [uuid()]: {
@@ -17,7 +22,7 @@ const DropAndDown = ({ allTask }) => {
     },
     [uuid()]: {
       name: "In Progress",
-      items: allTask.filter(item => item.taskStatus === "In progress"),
+      items: allTask.filter(item => item.taskStatus === "progress"),
     },
     [uuid()]: {
       name: "Done",
@@ -28,7 +33,6 @@ const DropAndDown = ({ allTask }) => {
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-  
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -36,7 +40,6 @@ const DropAndDown = ({ allTask }) => {
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
 
-      console.log(removed);
       if(removed.taskStatus === "requested") {
         if(destColumn.name === "To do"){
           removed.taskStatus = "todo";
@@ -124,6 +127,11 @@ const DropAndDown = ({ allTask }) => {
     }
   };
   
+  const handleDelete = (id) =>{
+    console.log(id);
+   dispatch(deleteTask(id));
+  }
+
   return (
     <div
       style={{
@@ -136,7 +144,7 @@ const DropAndDown = ({ allTask }) => {
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
-        {Object.entries(columns || {}).map(([columnId, column], index) => {
+        {Object.entries(columns).map(([columnId, column], index) => {
           return (
             <div
               style={{
@@ -194,6 +202,7 @@ const DropAndDown = ({ allTask }) => {
                                   >
                                     Task : {item.description}
                                     <p> Assigned User : {item.user}</p>
+                                   <DeleteEdit  handleDelete={handleDelete}/>
                                   </div>
                                 );
                               }}
