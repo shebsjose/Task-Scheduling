@@ -128,9 +128,14 @@ const DropAndDown = ({ allTask }) => {
     }
   };
   
-  const handleDelete = (id) =>{
-    console.log(id);
-   dispatch(deleteTask(id));
+  const handleDelete = (task) =>{
+    console.log(task);
+   dispatch(deleteTask(task));
+   dispatch(getAllTask())
+  }
+
+  const handleEdit = () =>{
+
   }
 
   return (
@@ -174,11 +179,11 @@ const DropAndDown = ({ allTask }) => {
                           boxShadow: "10px 5px 5px #c0baba",
                         }}
                       >
-                        {column.items.map((item, index) => {
+                        {column.items.map((task, index) => {
                           return (
                             <Draggable
-                              key={item._id}
-                              draggableId={item._id}
+                              key={task._id}
+                              draggableId={task._id}
                               index={index}
                             >
                               {(provided, snapshot) => {
@@ -201,10 +206,10 @@ const DropAndDown = ({ allTask }) => {
                                       ...provided.draggableProps.style,
                                     }}
                                   >
-                                    Task : {item.description}
-                                    <p> Assigned User : {item.user}</p>
-                                   <DeleteTask  handleDelete={handleDelete}/>
-                                   <EditTask />
+                                    Task : {task.description}
+                                    <p> Assigned User : {task.user}</p>
+                                   <DeleteTask  handleDelete={()=>handleDelete(task)}/>
+                                   <EditTask task={task} />
                                   </div>
                                 );
                               }}

@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const DeleteTask = ({ onDelete }) => {
+const DeleteTask = ({ handleDelete }) => {
     return ( 
            <FontAwesomeIcon icon={faTrash}  style={{paddingRight :"35px", marginTop: "15px" , cursor: "pointer" }}
-                                     onClick={() => onDelete()}/> 
+                                     onClick={() => handleDelete()}/> 
      );
 }
  
