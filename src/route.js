@@ -16,12 +16,11 @@ import NotFound from "./components/notfound";
 import jwt_decode from "jwt-decode";
 
 const Routers = () => {
-
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("Token") || null);
   const [loginUser, setLoginUser] = useState(null);
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       const decoded = jwt_decode(token);
       setLoginUser(decoded.user);
     }
@@ -31,15 +30,21 @@ const Routers = () => {
     <div>
       <Router>
         <ToastContainer />
-        <NavBar token={token} loginUser={loginUser} setToken={setToken}/>
+        <NavBar token={token} loginUser={loginUser} setToken={setToken} />
         <Routes>
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<Home setToken={setToken} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          {token ? (
+            <>
+              <Route path="/task-page" element={<TaskPage />} />
+            </>
+          ) : (
+            <>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </>
+          )}
           <Route path="/not-found" element={<NotFound />} />
-          <Route path="/task-page" element={<TaskPage />} />
-          {/* <ProtectedRoute exact path="" element={<TaskPage />} /> */}
         </Routes>
       </Router>
     </div>

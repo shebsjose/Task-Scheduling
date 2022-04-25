@@ -51,9 +51,9 @@ export const changeTaskStatus = (task) => {
   console.log(task);
   return async (dispatch) => {
     try {
-      dispatch(fetchTaskRequest());
+      // dispatch(fetchTaskRequest());
       const { data } = await axios.patch(apiEndPoint + "/change-status/" + task._id, task);
-      dispatch(fetchTaskSuccess(data));
+      // dispatch(fetchTaskSuccess(data));
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));

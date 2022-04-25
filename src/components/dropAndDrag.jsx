@@ -3,7 +3,8 @@ import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeTaskStatus,deleteTask,getAllTask } from "../api/taskApi";
-import DeleteEdit from "./deleteEdit";
+import DeleteTask from "./deleteTask";
+import EditTask from "./editTask";
 
 const DropAndDown = ({ allTask }) => {
   useEffect(() => {
@@ -202,7 +203,8 @@ const DropAndDown = ({ allTask }) => {
                                   >
                                     Task : {item.description}
                                     <p> Assigned User : {item.user}</p>
-                                   <DeleteEdit  handleDelete={handleDelete}/>
+                                   <DeleteTask  handleDelete={handleDelete}/>
+                                   <EditTask />
                                   </div>
                                 );
                               }}
