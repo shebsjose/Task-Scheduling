@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask } from "../api/taskApi";
+import { createTask, getAllTask } from "../api/taskApi";
 import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
@@ -19,8 +19,9 @@ const CreateTaskModel = ({ open, setOpen }) => {
 
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
-  const userText = useSelector((state) => state.task.user);
+  useSelector((state) => state.task.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -32,6 +33,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
     e.preventDefault();
     dispatch(createTask({ description, user:select}))
     setOpen(false);
+    dispatch(getAllTask());
   };
 
   return (
@@ -79,7 +81,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
                       as="h1"
                       className="text-lg leading-6 font-medium text-gray-900"
                     >
-                      Create Your Task
+                     {isEditing ? "Create Your Task" : "Update Your Task"}
                     </Dialog.Title>
                     <div className="mt-2">
                       <textarea
@@ -104,7 +106,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-600 text-base font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:ml-3 sm:w-auto sm:text-sm hover:bg-sky-700"
                   onClick={(event) => handleSubmit(event)}
                 >
-                  Submit
+                  {isEditing ? "Submit" : "Update"}
                 </button>
                 <button
                   type="button"
