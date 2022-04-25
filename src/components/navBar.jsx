@@ -18,7 +18,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
-    window.location.href = "/home";
+    window.location = "/"
   };
 
   return (
