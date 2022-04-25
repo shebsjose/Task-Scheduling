@@ -11,7 +11,6 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import NavBar from "./components/navBar.jsx";
 import TaskPage from "./pages/taskPage";
-import ProtectedRoute from "./components/protectedRoute";
 import NotFound from "./components/notfound";
 import jwt_decode from "jwt-decode";
 

@@ -15,6 +15,7 @@ export const createTask = (textValues) => {
         'You Created Successfully !',
         'success'
       )
+      dispatch(getAllTask());
       return {res : true}
     } catch (error) {
       console.log(error);
@@ -51,9 +52,7 @@ export const changeTaskStatus = (task) => {
   console.log(task);
   return async (dispatch) => {
     try {
-      // dispatch(fetchTaskRequest());
-      const { data } = await axios.patch(apiEndPoint + "/change-status/" + task._id, task);
-      // dispatch(fetchTaskSuccess(data));
+      await axios.patch(apiEndPoint + "/change-status/" + task._id, task);
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
@@ -70,9 +69,8 @@ export const deleteTask= (task) => {
   console.log(task);
   return async (dispatch) => {
     try {
-      dispatch(fetchTaskRequest());
-      const { data } = await axios.delete(apiEndPoint + "/change-status/" + task._id,task);
-      dispatch(fetchTaskSuccess(data));
+        await axios.delete(apiEndPoint + "/delete/" + task._id,task);
+        dispatch(getAllTask());
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
