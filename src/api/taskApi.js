@@ -49,7 +49,6 @@ export const getAllTask = () => {
 };
 
 export const changeTaskStatus = (task) => {
-  console.log(task);
   return async (dispatch) => {
     try {
       await axios.patch(apiEndPoint + "/change-status/" + task._id, task);
@@ -66,7 +65,6 @@ export const changeTaskStatus = (task) => {
 };
 
 export const deleteTask= (task) => {
-  console.log(task);
   return async (dispatch) => {
     try {
         await axios.delete(apiEndPoint + "/delete/" + task._id,task);
@@ -82,6 +80,26 @@ export const deleteTask= (task) => {
     }
   };
 };
+
+export const updateTask= (task) => {
+  console.log(task);
+  return async (dispatch) => {
+    try {
+        await axios.put(apiEndPoint + "/update/" + task._id, task);
+        dispatch(getAllTask());
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
+      Swal.fire(
+        'Oops',
+        error.response.data,
+        'error'
+      )
+    }
+  };
+};
+
+
 
 
 
