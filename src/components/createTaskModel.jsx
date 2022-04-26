@@ -2,12 +2,12 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask, getAllTask } from "../api/taskApi";
+import { createTask, getAllTask, updateTask } from "../api/taskApi";
 import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
 
-const CreateTaskModel = ({ open, setOpen }) => {
+const CreateTaskModel = ({ open, setOpen, task, isEditing}) => {
   const cancelButtonRef = useRef(null);
 
   useEffect(() => {
@@ -19,19 +19,28 @@ const CreateTaskModel = ({ open, setOpen }) => {
 
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if(task) {
+      setDescription(task.description);
+      setSelect(task.user)
+    }
+  }, []);
 
   useSelector((state) => state.task.user);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setDescription(e.target.value);
-    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createTask({ description, user:select}))
+    if(isEditing){
+    dispatch(updateTask({_id : task._id, description}));
+    }else{
+      dispatch(createTask({ description, user:select}))
+    }
     setOpen(false);
     dispatch(getAllTask());
   };
@@ -81,7 +90,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
                       as="h1"
                       className="text-lg leading-6 font-medium text-gray-900"
                     >
-                     {isEditing ? "Create Your Task" : "Update Your Task"}
+                     {isEditing ? "Update Your Task" : "Create Your Task"  }
                     </Dialog.Title>
                     <div className="mt-2">
                       <textarea
@@ -106,7 +115,7 @@ const CreateTaskModel = ({ open, setOpen }) => {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-600 text-base font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:ml-3 sm:w-auto sm:text-sm hover:bg-sky-700"
                   onClick={(event) => handleSubmit(event)}
                 >
-                  {isEditing ? "Submit" : "Update"}
+                  {isEditing ? "Update" : "Submit"}
                 </button>
                 <button
                   type="button"

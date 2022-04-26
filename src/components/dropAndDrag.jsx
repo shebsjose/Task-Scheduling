@@ -134,10 +134,6 @@ const DropAndDown = ({ allTask }) => {
    dispatch(getAllTask())
   }
 
-  const handleEdit = () =>{
-
-  }
-
   return (
     <div
       style={{
