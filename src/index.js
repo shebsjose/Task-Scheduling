@@ -21,7 +21,7 @@ const enhancer = composeEnhancers(
 );
 
 const store = createStore(allReducer, enhancer);
-store.subscribe(()=> console.log("Redux => ",store.getState()));
+store.subscribe(()=> store.getState());
 
 ReactDOM.render(
   <Provider store ={store}>

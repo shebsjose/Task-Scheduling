@@ -2,32 +2,29 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus,deleteTask,getAllTask } from "../api/taskApi";
+import { changeTaskStatus, deleteTask, getAllTask } from "../api/taskApi";
 import DeleteTask from "./deleteTask";
 import EditTask from "./editTask";
 
 const DropAndDown = ({ allTask }) => {
-  useEffect(() => {
-     dispatch(getAllTask());
-  },[]);
- 
+  
   const dispatch = useDispatch();
   const [columns, setColumns] = useState({
     [uuid()]: {
       name: "Requested",
-      items: allTask.filter(item => item.taskStatus === "requested"),
+      items: allTask.filter((item) => item.taskStatus === "requested"),
     },
     [uuid()]: {
       name: "To do",
-      items: allTask.filter(item => item.taskStatus === "todo")
+      items: allTask.filter((item) => item.taskStatus === "todo"),
     },
     [uuid()]: {
       name: "In Progress",
-      items: allTask.filter(item => item.taskStatus === "progress"),
+      items: allTask.filter((item) => item.taskStatus === "progress"),
     },
     [uuid()]: {
       name: "Done",
-      items: allTask.filter(item => item.taskStatus === "done"),
+      items: allTask.filter((item) => item.taskStatus === "done"),
     },
   });
 
@@ -41,61 +38,61 @@ const DropAndDown = ({ allTask }) => {
       const destItems = [...destColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
 
-      if(removed.taskStatus === "requested") {
-        if(destColumn.name === "To do"){
+      if (removed.taskStatus === "requested") {
+        if (destColumn.name === "To do") {
           removed.taskStatus = "todo";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "In Progress"){
+        if (destColumn.name === "In Progress") {
           removed.taskStatus = "progress";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "Done"){
+        if (destColumn.name === "Done") {
           removed.taskStatus = "done";
           dispatch(changeTaskStatus(removed));
         }
       }
 
-      if(removed.taskStatus === "todo") {
-        if(destColumn.name === "Requested"){
+      if (removed.taskStatus === "todo") {
+        if (destColumn.name === "Requested") {
           removed.taskStatus = "requested";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "In Progress"){
+        if (destColumn.name === "In Progress") {
           removed.taskStatus = "progress";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "Done"){
+        if (destColumn.name === "Done") {
           removed.taskStatus = "done";
           dispatch(changeTaskStatus(removed));
         }
       }
 
-      if(removed.taskStatus === "progress") {
-        if(destColumn.name === "To do"){
+      if (removed.taskStatus === "progress") {
+        if (destColumn.name === "To do") {
           removed.taskStatus = "todo";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "Requested"){
+        if (destColumn.name === "Requested") {
           removed.taskStatus = "requested";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "Done"){
+        if (destColumn.name === "Done") {
           removed.taskStatus = "done";
           dispatch(changeTaskStatus(removed));
         }
       }
 
-      if(removed.taskStatus === "done") {
-        if(destColumn.name === "To do"){
+      if (removed.taskStatus === "done") {
+        if (destColumn.name === "To do") {
           removed.taskStatus = "todo";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "Requested"){
+        if (destColumn.name === "Requested") {
           removed.taskStatus = "requested";
           dispatch(changeTaskStatus(removed));
         }
-        if(destColumn.name === "In Progress"){
+        if (destColumn.name === "In Progress") {
           removed.taskStatus = "progress";
           dispatch(changeTaskStatus(removed));
         }
@@ -127,12 +124,10 @@ const DropAndDown = ({ allTask }) => {
       });
     }
   };
-  
-  const handleDelete = (task) =>{
-    console.log(task);
-   dispatch(deleteTask(task));
-   dispatch(getAllTask())
-  }
+
+  const handleDelete = (task) => {
+    dispatch(deleteTask(task));
+  };
 
   return (
     <div
@@ -204,8 +199,10 @@ const DropAndDown = ({ allTask }) => {
                                   >
                                     Task : {task.description}
                                     <p> Assigned User : {task.user}</p>
-                                   <DeleteTask  handleDelete={()=>handleDelete(task)}/>
-                                   <EditTask task={task} />
+                                    <DeleteTask
+                                      handleDelete={() => handleDelete(task)}
+                                    />
+                                    <EditTask task={task} />
                                   </div>
                                 );
                               }}

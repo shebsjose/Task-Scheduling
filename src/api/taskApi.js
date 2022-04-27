@@ -9,13 +9,13 @@ export const createTask = (textValues) => {
   return async (dispatch) => {
     try {
       await axios.post(apiEndPoint + "/create", textValues);
+      dispatch(getAllTask());
       // toast.success('Successfully Created', toastOptions);
       Swal.fire(
         'Good job!',
         'You Created Successfully !',
         'success'
-      )
-      dispatch(getAllTask());
+      );
       return {res : true}
     } catch (error) {
       console.log(error);
@@ -69,6 +69,11 @@ export const deleteTask= (task) => {
     try {
         await axios.delete(apiEndPoint + "/delete/" + task._id,task);
         dispatch(getAllTask());
+        Swal.fire(
+          'Good job!',
+          'You Delete Successfully !',
+          'success'
+        )
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
@@ -86,6 +91,11 @@ export const updateTask= (task) => {
   return async (dispatch) => {
     try {
         await axios.put(apiEndPoint + "/update/" + task._id, task);
+        Swal.fire(
+          'Good job!',
+          'You Updated Successfully !',
+          'success'
+        )
         dispatch(getAllTask());
     } catch (error) {
       console.log(error);

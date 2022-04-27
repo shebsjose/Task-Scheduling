@@ -1,27 +1,34 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import CreateTaskModel from "../components/createTaskModel";
 
 const EditTask = ({ task }) => {
-    const [open, setOpen] =useState(false);
-    const [isEditing, setIsEditing] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-     const handleEdit = () =>{
-        console.log("hello edit");
-        setOpen(!open);
-        setIsEditing(true);
-     }
-     
-    return (     
-        <>
-          <FontAwesomeIcon icon={faPenToSquare} style={{paddingLeft :"35px", marginTop: "1px" , cursor: "pointer"}}
-                    onClick={() => handleEdit()}  
+  const handleEdit = () => {
+    setOpen(!open);
+    setIsEditing(true);
+  };
+
+  return (
+    <>
+      <FontAwesomeIcon
+        icon={faPenToSquare}
+        style={{ paddingLeft: "35px", marginTop: "1px", cursor: "pointer" }}
+        onClick={() => handleEdit()}
+      />
+      {open && (
+        <CreateTaskModel
+          setOpen={setOpen}
+          open={open}
+          task={task}
+          isEditing={isEditing}
         />
-         {open && <CreateTaskModel setOpen={setOpen} open={open} task={task} isEditing={isEditing}/>}
-        </>
-        
-     );
-}
- 
+      )}
+    </>
+  );
+};
+
 export default EditTask;

@@ -7,23 +7,22 @@ import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
 
-const CreateTaskModel = ({ open, setOpen, task, isEditing}) => {
+const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
   const cancelButtonRef = useRef(null);
 
   useEffect(() => {
     dispatch(getAllUser());
-  },[]);
+  }, []);
 
   const users = useSelector((state) => state.users.userTask);
-  console.log({ users });
 
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
 
   useEffect(() => {
-    if(task) {
+    if (task) {
       setDescription(task.description);
-      setSelect(task.user)
+      setSelect(task.user);
     }
   }, []);
 
@@ -36,13 +35,12 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(isEditing){
-    dispatch(updateTask({_id : task._id, description}));
-    }else{
-      dispatch(createTask({ description, user:select}))
+    if (isEditing) {
+      dispatch(updateTask({ _id: task._id, description }));
+    } else {
+      dispatch(createTask({ description, user: select }));
     }
     setOpen(false);
-    dispatch(getAllTask());
   };
 
   return (
@@ -90,7 +88,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing}) => {
                       as="h1"
                       className="text-lg leading-6 font-medium text-gray-900"
                     >
-                     {isEditing ? "Update Your Task" : "Create Your Task"  }
+                      {isEditing ? "Update Your Task" : "Create Your Task"}
                     </Dialog.Title>
                     <div className="mt-2">
                       <textarea
