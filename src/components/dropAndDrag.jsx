@@ -129,6 +129,8 @@ const DropAndDown = ({ allTask }) => {
     dispatch(deleteTask(task));
   };
 
+  
+
   return (
     <div
       style={{
@@ -203,6 +205,8 @@ const DropAndDown = ({ allTask }) => {
                                       handleDelete={() => handleDelete(task)}
                                     />
                                     <EditTask task={task} />
+                                    {new Date(task.createAt).getDate()
+                                    }
                                   </div>
                                 );
                               }}

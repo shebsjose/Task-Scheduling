@@ -30,7 +30,7 @@ export const registerUser = (data) => {
         return true
       } catch (error) {
         dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
-        toast.error(error.response.data, toastOptions);
+        toast.error(error.response?.data, toastOptions);
         return false
       }
     };
