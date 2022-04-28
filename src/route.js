@@ -13,6 +13,7 @@ import NavBar from "./components/navBar.jsx";
 import TaskPage from "./pages/taskPage";
 import NotFound from "./components/notfound";
 import jwt_decode from "jwt-decode";
+import UserProfile from "./components/userProfile";
 
 const Routers = () => {
   const [token, setToken] = useState(localStorage.getItem("Token") || null);
@@ -36,6 +37,7 @@ const Routers = () => {
           {token ? (
             <>
               <Route path="/task-page" element={<TaskPage />} />
+              <Route path="/user-profile" element={< UserProfile loginUser={loginUser}/>} />
             </>
           ) : (
             <>
@@ -43,7 +45,7 @@ const Routers = () => {
               <Route path="/login" element={<Login />} />
             </>
           )}
-          <Route path="/not-found" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
