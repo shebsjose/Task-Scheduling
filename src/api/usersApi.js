@@ -1,6 +1,5 @@
 
 import axios from "axios";
-import { fetchUserSuccess } from "../actions/authAction";
 import { fetchUserTaskFailure, fetchUserTaskRequest, fetchUserTaskSuccess } from "../actions/usersAction";
 const apiEndPoint = "http://localhost:5000/api/auth";
 

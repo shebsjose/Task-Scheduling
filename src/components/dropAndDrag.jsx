@@ -2,31 +2,37 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeTaskStatus, deleteTask, getAllTask } from "../api/taskApi";
+import { changeTaskStatus, deleteTask} from "../api/taskApi";
 import DeleteTask from "./deleteTask";
 import EditTask from "./editTask";
 
 const DropAndDown = ({ allTask }) => {
-  
+  console.log(allTask);
+
+  useEffect(()=>{
+     setColumns({
+      [uuid()]: {
+        name: "Requested",
+        items: allTask.filter((item) => item.taskStatus === "requested"),
+      },
+      [uuid()]: {
+        name: "To do",
+        items: allTask.filter((item) => item.taskStatus === "todo"),
+      },
+      [uuid()]: {
+        name: "In Progress",
+        items: allTask.filter((item) => item.taskStatus === "progress"),
+      },
+      [uuid()]: {
+        name: "Done",
+        items: allTask.filter((item) => item.taskStatus === "done"),
+      },
+    })
+  },[allTask.length])
+
   const dispatch = useDispatch();
-  const [columns, setColumns] = useState({
-    [uuid()]: {
-      name: "Requested",
-      items: allTask.filter((item) => item.taskStatus === "requested"),
-    },
-    [uuid()]: {
-      name: "To do",
-      items: allTask.filter((item) => item.taskStatus === "todo"),
-    },
-    [uuid()]: {
-      name: "In Progress",
-      items: allTask.filter((item) => item.taskStatus === "progress"),
-    },
-    [uuid()]: {
-      name: "Done",
-      items: allTask.filter((item) => item.taskStatus === "done"),
-    },
-  });
+  const [columns, setColumns] = useState({});
+  console.log(columns);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -110,6 +116,7 @@ const DropAndDown = ({ allTask }) => {
           items: destItems,
         },
       });
+      console.log(setColumns);
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
@@ -205,8 +212,8 @@ const DropAndDown = ({ allTask }) => {
                                       handleDelete={() => handleDelete(task)}
                                     />
                                     <EditTask task={task} />
-                                    {new Date(task.createAt).getDate()
-                                    }
+                                    {/* {new Date(task.createAt).getDate()
+                                    } */}
                                   </div>
                                 );
                               }}
