@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask, getAllTask, updateTask } from "../api/taskApi";
+import { createTask,updateTask } from "../api/taskApi";
 import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
@@ -16,6 +16,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
 
   const users = useSelector((state) => state.users.userTask);
 
+  console.log(users);
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
 
@@ -36,7 +37,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditing) {
-      dispatch(updateTask({ _id: task._id, description }));
+      dispatch(updateTask({ _id: task._id, description, user: select }));
     } else {
       dispatch(createTask({ description, user: select }));
     }
