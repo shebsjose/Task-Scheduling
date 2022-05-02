@@ -91,12 +91,12 @@ export const updateTask= (task) => {
   return async (dispatch) => {
     try {
         await axios.put(apiEndPoint + "/update/" + task._id, task);
+        dispatch(getAllTask());
         Swal.fire(
           'Good job!',
           'You Updated Successfully !',
           'success'
         )
-        dispatch(getAllTask());
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));

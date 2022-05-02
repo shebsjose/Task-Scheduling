@@ -3,13 +3,15 @@ import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeTaskStatus, deleteTask} from "../api/taskApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays} from "@fortawesome/free-solid-svg-icons";
 import DeleteTask from "./deleteTask";
 import EditTask from "./editTask";
 
 const DropAndDown = ({ allTask }) => {
   console.log(allTask);
 
-  useEffect(()=>{
+  useEffect( ()=> {
      setColumns({
       [uuid()]: {
         name: "Requested",
@@ -28,10 +30,11 @@ const DropAndDown = ({ allTask }) => {
         items: allTask.filter((item) => item.taskStatus === "done"),
       },
     })
-  },[allTask.length])
+  },[allTask]);
 
   const dispatch = useDispatch();
   const [columns, setColumns] = useState({});
+
   console.log(columns);
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -116,7 +119,7 @@ const DropAndDown = ({ allTask }) => {
           items: destItems,
         },
       });
-      console.log(setColumns);
+      
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
@@ -160,7 +163,7 @@ const DropAndDown = ({ allTask }) => {
               }}
               key={columnId}
             >
-              <h2>{column.name}</h2>
+              <h2>{column.name} : {column.items.length || 0}</h2>
               <div style={{ margin: 8 }}>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
@@ -193,6 +196,7 @@ const DropAndDown = ({ allTask }) => {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     style={{
+                                      fontSize:"18px",
                                       textAlign: "center",
                                       userSelect: "none",
                                       padding: 16,
@@ -212,8 +216,10 @@ const DropAndDown = ({ allTask }) => {
                                       handleDelete={() => handleDelete(task)}
                                     />
                                     <EditTask task={task} />
-                                    {/* {new Date(task.createAt).getDate()
-                                    } */}
+                                    <div style={{marginTop :"10px", fontSize:"15px"}}>
+                                    <FontAwesomeIcon icon={faCalendarDays} style={{marginRight:"8px"}} />
+                                    {new Date(task.createdAt).toDateString()}
+                                    </div>
                                   </div>
                                 );
                               }}

@@ -15,8 +15,9 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
   }, []);
 
   const users = useSelector((state) => state.users.userTask);
-
-  console.log(users);
+  useSelector((state) => state.task.user);
+  const dispatch = useDispatch();
+  
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
 
@@ -27,8 +28,6 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
     }
   }, []);
 
-  useSelector((state) => state.task.user);
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setDescription(e.target.value);
@@ -93,6 +92,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <textarea
+                        rows="3"
                         className="text-sm text-gray-500 outline-none width: 367px"
                         placeholder="Please Add Your Task Here..."
                         onChange={handleChange}

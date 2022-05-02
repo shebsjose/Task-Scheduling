@@ -50,7 +50,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/task-page"
                 >
-                <FontAwesomeIcon icon={faClipboardCheck} /><span className="px-0.1"> Task</span>
+                <FontAwesomeIcon icon={faClipboardCheck} /><span className="px-0.5"> Task</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
@@ -59,7 +59,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/user-profile"
                 >
-                  <FontAwesomeIcon icon={faUser} /><span className="px-0.1">{user.userName || loginUser?.userName}</span>
+                  <FontAwesomeIcon icon={faUser} /><span className="px-1.5">{user.userName || loginUser?.userName}</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
@@ -69,7 +69,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   onClick={handleLogout}
                   to="/login"
                 >
-                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-0.1"> LogOut</span>
+                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-1.5"> LogOut</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
@@ -83,7 +83,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                 >
                   {" "}
                   <FontAwesomeIcon icon={faAddressCard} />
-                  <span className="px-0.1">Register</span>
+                  <span className="px-1.5">Register</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
@@ -92,7 +92,7 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/login"
                 >
-                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-0.1"> LogIn</span>
+                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-1.5"> LogIn</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
