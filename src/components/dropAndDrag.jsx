@@ -204,24 +204,45 @@ const DropAndDown = ({ allTask }) => {
                                       color: "white",
                                       ...provided.draggableProps.style,
                                     }}
-                                  >
-                                    Task : {task.description}
-                                    <p> Assigned User : {task.user}</p>
-                                    <DeleteTask
-                                      handleDelete={() => handleDelete(task)}
-                                    />
-                                    <EditTask task={task} />
-                                    <div
-                                      style={{
-                                        marginTop: "10px",
-                                        fontSize: "15px",
-                                      }}
-                                    >
-                                      <FontAwesomeIcon
-                                        icon={faCalendarDays}
-                                        style={{ marginRight: "8px" }}
-                                      />
-                                      {new Date(task.createdAt).toDateString()}
+                                  ><div className="flex flex-col">
+                                      
+                                      <div
+                                        style={{
+                                          float: "right",
+                                          fontSize: "12px",
+                                        }}
+                                      >
+                                        <DeleteTask
+                                          handleDelete={() =>
+                                            handleDelete(task)
+                                          }
+                                        />
+                                        <EditTask task={task} />
+                                      </div>
+                                      <span
+                                     
+                                        style={{
+                                          marginTop: "10px",
+                                          fontSize: "12px",
+                                          float: "left",
+                                        }}
+                                      >
+                                        <FontAwesomeIcon
+                                          icon={faCalendarDays}
+                                          style={{ marginRight: "8px" }}
+                                        />
+                                        {new Date(
+                                          task.createdAt
+                                        ).toDateString()}
+                                      </span>
+                                    </div>
+                                    <div className="flex flex-col">
+                                    <p className="mt-5">{task.description}</p>
+                                      <p className="mt-2"> User : {task.user}</p>
+                                      <span style={{ fontSize: "14px" }}>
+                                        {" "}
+                                        Estimated Time : ({task.time}) Hours
+                                      </span>
                                     </div>
                                   </div>
                                 );

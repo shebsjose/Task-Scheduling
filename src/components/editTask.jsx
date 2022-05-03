@@ -16,7 +16,7 @@ const EditTask = ({ task }) => {
     <>
       <FontAwesomeIcon
         icon={faPenToSquare}
-        style={{ paddingLeft: "35px", marginTop: "1px", cursor: "pointer" }}
+        style={{ paddingLeft: "15px", marginTop: "1px", cursor: "pointer" }}
         onClick={() => handleEdit()}
       />
       {open && (

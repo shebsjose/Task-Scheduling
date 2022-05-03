@@ -5,7 +5,7 @@ const DeleteTask = ({ handleDelete }) => {
   return (
     <FontAwesomeIcon
       icon={faTrash}
-      style={{ paddingRight: "35px", marginTop: "15px", cursor: "pointer" }}
+      style={{ paddingRight: "15px", marginTop: "15px", cursor: "pointer" }}
       onClick={() => handleDelete()}
     />
   );

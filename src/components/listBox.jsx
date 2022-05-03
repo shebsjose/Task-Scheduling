@@ -4,8 +4,7 @@ const ListBox = ({ users, select, setSelect }) => {
   };
 
   return (
-    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <div className="relative">
+      <div className="relative mt-5">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Select User
         </label>
@@ -30,7 +29,6 @@ const ListBox = ({ users, select, setSelect }) => {
           </svg>
         </div>
       </div>
-    </div>
   );
 };
 
