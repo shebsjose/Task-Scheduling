@@ -1,4 +1,3 @@
-
 export const fetchUserRequest = () => {
   return {
     type: "FETCH_USER_REQUEST",
@@ -18,8 +17,3 @@ export const fetchUserFailure = (error) => {
     payload: error,
   };
 };
-
-
-
-
- 

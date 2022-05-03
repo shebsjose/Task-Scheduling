@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../api/authApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const initialValues = {
@@ -22,12 +22,11 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(loginUser(inputValues))
-    .then((res) => {
-      if(res){
-        navigate('/home');
+    await dispatch(loginUser(inputValues)).then((res) => {
+      if (res) {
+        navigate("/home");
       }
-    })
+    });
   };
 
   return (

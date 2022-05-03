@@ -1,24 +1,25 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
-  faArrowRightToBracket,faUser, faClipboardCheck
+  faArrowRightToBracket,
+  faUser,
+  faClipboardCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-const NavBar = ({ token, loginUser, setToken  }) => {
-
+const NavBar = ({ token, loginUser, setToken }) => {
   useEffect(() => {
-    const token = localStorage.getItem('Token');
-    setToken(token)
+    const token = localStorage.getItem("Token");
+    setToken(token);
   }, [setToken, token]);
 
-  const user = useSelector(state => state.login.user);
+  const user = useSelector((state) => state.login.user);
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
-    window.location = "/"
+    setToken(null);
   };
 
   return (
@@ -50,7 +51,8 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/task-page"
                 >
-                <FontAwesomeIcon icon={faClipboardCheck} /><span className="px-0.5"> Task</span>
+                  <FontAwesomeIcon icon={faClipboardCheck} />
+                  <span className="px-0.5"> Task</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
@@ -59,18 +61,22 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/user-profile"
                 >
-                  <FontAwesomeIcon icon={faUser} /><span className="px-1.5">{user.userName || loginUser?.userName}</span>
+                  <FontAwesomeIcon icon={faUser} />
+                  <span className="px-1.5">
+                    {user.userName || loginUser?.userName}
+                  </span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
               <li className="relative group">
-                <NavLink
+                <Link
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
+                  to="/home"
                   onClick={handleLogout}
-                  to="/login"
                 >
-                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-1.5"> LogOut</span>
-                </NavLink>
+                  <FontAwesomeIcon icon={faArrowRightToBracket} />{" "}
+                  <span className="px-1.5"> LogOut</span>
+                </Link>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>
             </ul>
@@ -92,7 +98,8 @@ const NavBar = ({ token, loginUser, setToken  }) => {
                   className="bg-indigo-500 px-4 py-1 rounded-xl text-white hover:bg-indigo-400 active:bg-indigo-600 focus:ring focus:ring-indigo-500 focus:ring-opacity-25 outline-none"
                   to="/login"
                 >
-                  <FontAwesomeIcon icon={faArrowRightToBracket} /> <span className="px-1.5"> LogIn</span>
+                  <FontAwesomeIcon icon={faArrowRightToBracket} />{" "}
+                  <span className="px-1.5"> LogIn</span>
                 </NavLink>
                 <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
               </li>

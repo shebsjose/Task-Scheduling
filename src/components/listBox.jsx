@@ -1,5 +1,4 @@
 const ListBox = ({ users, select, setSelect }) => {
-
   const handleChange = (event) => {
     setSelect(event.target.value);
   };

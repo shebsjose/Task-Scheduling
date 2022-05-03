@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {  registerUser } from "../api/authApi";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAt, faLock, faUser} from '@fortawesome/free-solid-svg-icons';
-import {useNavigate} from 'react-router-dom'
-
+import { useDispatch } from "react-redux";
+import { registerUser } from "../api/authApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAt, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const initialValues = {
@@ -24,12 +23,11 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(registerUser(inputValues))
-    .then((res) => {
-      if(res){
-        navigate('/login');
+    await dispatch(registerUser(inputValues)).then((res) => {
+      if (res) {
+        navigate("/login");
       }
-    })
+    });
   };
 
   return (
@@ -44,7 +42,9 @@ const RegisterForm = () => {
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="username"
-        > <FontAwesomeIcon icon={faUser}/>
+        >
+          {" "}
+          <FontAwesomeIcon icon={faUser} />
           Username
         </label>
         <input
@@ -62,7 +62,7 @@ const RegisterForm = () => {
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="email"
         >
-          <FontAwesomeIcon icon={faAt}/>
+          <FontAwesomeIcon icon={faAt} />
           Email
         </label>
         <input
@@ -79,7 +79,9 @@ const RegisterForm = () => {
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
           htmlFor="password"
-        > <FontAwesomeIcon icon={faLock}/>
+        >
+          {" "}
+          <FontAwesomeIcon icon={faLock} />
           Password
         </label>
         <input

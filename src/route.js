@@ -37,7 +37,10 @@ const Routers = () => {
           {token ? (
             <>
               <Route path="/task-page" element={<TaskPage />} />
-              <Route path="/user-profile" element={< UserProfile loginUser={loginUser}/>} />
+              <Route
+                path="/user-profile"
+                element={<UserProfile loginUser={loginUser} />}
+              />
             </>
           ) : (
             <>

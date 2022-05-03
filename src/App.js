@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Routers from "./route";
 import "./App.css";
 
