@@ -20,6 +20,8 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
 
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
+  const [time, setTime] = useState("");
+  console.log(time);
 
   useEffect(() => {
     if (task) {
@@ -37,7 +39,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
     if (isEditing) {
       dispatch(updateTask({ _id: task._id, description, user: select }));
     } else {
-      dispatch(createTask({ description, user: select }));
+      dispatch(createTask({ description, user: select, time }));
     }
     setOpen(false);
   };
@@ -98,6 +100,18 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                         name="description"
                         value={description}
                       ></textarea>
+                    </div>
+                    <div className="mt-0">
+                      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Estimated Time
+                      </label>
+                      <input
+                        type="time"
+                        id="appt"
+                        name="time"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                      />
                     </div>
                     <ListBox
                       users={users}
