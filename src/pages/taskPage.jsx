@@ -11,7 +11,7 @@ const TaskPage = () => {
    }
    return (
       <div>
-         <button className="w-50 mt-6 bg-indigo-600 rounded-lg px-2 py-2 text-lg text-white tracking-wide font-semibold font-sans rounded-full "
+         <button className="w-50 mt-6 bg-indigo-600 rounded-lg px-2 py-2 text-lg text-white tracking-wide font-semibold font-sans rounded-full ml-6"
             onClick={handleClick}
          >
             <span>Create Task</span>

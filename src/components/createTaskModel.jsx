@@ -21,7 +21,6 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
   const [description, setDescription] = useState("");
   const [select, setSelect] = useState("");
   const [time, setTime] = useState("");
-  console.log(time);
 
   useEffect(() => {
     if (task) {
@@ -30,6 +29,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
     }
   }, []);
 
+  console.log(select,"hhhh");
   const handleChange = (e) => {
     setDescription(e.target.value);
   };
@@ -116,7 +116,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                     <ListBox
                       users={users}
                       select={select}
-                      setSelect={setSelect}
+                      setSelect={(user)=>setSelect(user)}
                     />
                   </div>
                 </div>

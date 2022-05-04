@@ -206,23 +206,9 @@ const DropAndDown = ({ allTask }) => {
                                     }}
                                   ><div className="flex flex-col">
                                       
-                                      <div
-                                        style={{
-                                          float: "right",
-                                          fontSize: "12px",
-                                        }}
-                                      >
-                                        <DeleteTask
-                                          handleDelete={() =>
-                                            handleDelete(task)
-                                          }
-                                        />
-                                        <EditTask task={task} />
-                                      </div>
                                       <span
                                      
                                         style={{
-                                          marginTop: "10px",
                                           fontSize: "12px",
                                           float: "left",
                                         }}
@@ -237,12 +223,25 @@ const DropAndDown = ({ allTask }) => {
                                       </span>
                                     </div>
                                     <div className="flex flex-col">
-                                    <p className="mt-5">{task.description}</p>
-                                      <p className="mt-2"> User : {task.user}</p>
-                                      <span style={{ fontSize: "14px" }}>
+                                    <p className="mt-3">{task.description}</p>
+                                      <p className="mt-1"> User : {task.user}</p>
+                                      <span style={{ fontSize: "14px", marginTop: "4px"}}>
                                         {" "}
                                         Estimated Time : ({task.time}) Hours
                                       </span>
+                                        <div
+                                          style={{
+                                            float: "right",
+                                            fontSize: "16px",
+                                          }}
+                                        >
+                                          <DeleteTask
+                                            handleDelete={() =>
+                                              handleDelete(task)
+                                            }
+                                          />
+                                          <EditTask task={task} />
+                                        </div>
                                     </div>
                                   </div>
                                 );
