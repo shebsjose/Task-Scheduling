@@ -1,7 +1,7 @@
 import axios from "axios";
 import { fetchTaskRequest, fetchTaskSuccess, fetchTaskFailure } from "../actions/taskAction";
 import Swal from 'sweetalert2'
-const apiEndPoint = "http://localhost:5000/api/task";
+const apiEndPoint = "https://task-scheduling-api-v1.herokuapp.com/api/task";
 
 export const createTask = (textValues) => {
   return async (dispatch) => {

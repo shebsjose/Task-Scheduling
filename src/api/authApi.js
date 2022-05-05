@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import {fetchUserRequest, fetchUserSuccess, fetchUserFailure } from "../actions/authAction";
 import { toastOptions } from "../utils/utils";
 
-const apiEndPoint = "http://localhost:5000/api/auth";
+const apiEndPoint = "https://task-scheduling-api-v1.herokuapp.com/api/auth";
 
 export const registerUser = (data) => {
     return async () => {
