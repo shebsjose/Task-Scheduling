@@ -1,14 +1,18 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTask } from "../api/taskApi";
 import DropAndDown from "./dropAndDrag";
+import Spinner from "./spinner";
 
 const Card = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const task = useSelector((state) => state.task.task);
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(getAllTask());
   }, [task.length]);
 
@@ -23,7 +27,9 @@ const Card = () => {
               className="py-3 px-20 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200 m"
               role="alert"
             >
+               {!isLoading ? <Spinner /> : 
               <strong> There is no data! Please add new task.</strong>
+               }
             </div>
           )}
         </div>
