@@ -29,7 +29,6 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
     }
   }, []);
 
-  console.log(select,"hhhh");
   const handleChange = (e) => {
     setDescription(e.target.value);
   };
