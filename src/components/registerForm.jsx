@@ -13,6 +13,7 @@ const RegisterForm = () => {
   };
 
   const [inputValues, setInputValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,20 +24,60 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(registerUser(inputValues)).then((res) => {
-      if (res) {
-        navigate("/login");
-      }
-    });
+    if (validate()) {
+      await dispatch(registerUser(inputValues)).then((res) => {
+        if (res) {
+          navigate("/login");
+        }
+      });
+    }
   };
 
+  const validate = () => {
+    const input = { ...inputValues };
+    let errors = {};
+    let isValid = true;
+    console.log(input.userName);
+    if (input.userName === "") {
+      isValid = false;
+      errors.userName = "Please enter User Name";
+    } else if (input.userName.length < 10) {
+      errors.userName = "Name cannot exceed 20 characters";
+    }
+
+    if (input.email === "") {
+      isValid = false;
+      errors.email = "Please enter your email Address.";
+    } else {
+      const emailPattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+
+      if (!emailPattern.test(input.email)) {
+        isValid = false;
+        errors.email = "Please enter valid email address.";
+      }
+    }
+    if (input.password === "") {
+      isValid = false;
+      errors.password = "Please enter your password.";
+    } else {
+      if (input.password <= 6) {
+        isValid = false;
+        errors.password = "Please enter your password.";
+      }             
+    }
+
+    setErrors(errors);
+    return isValid;
+  };
   return (
     <form
       className="bg-white p-10 rounded-lg shadow-lg min-w-full"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-        Form Register
+        Registration
       </h1>
       <div>
         <label
@@ -48,7 +89,7 @@ const RegisterForm = () => {
           Username
         </label>
         <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          className="border rounded-lg px-3 py-2 mt-1 mb-3 text-sm w-full bg-gray-100"
           type="text"
           id="username"
           name="userName"
@@ -57,6 +98,9 @@ const RegisterForm = () => {
           onChange={handleChange}
         />
       </div>
+        {errors.userName && (
+          <div className="text-red-600">{errors.userName}</div>
+        )}
       <div>
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
@@ -66,7 +110,7 @@ const RegisterForm = () => {
           Email
         </label>
         <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          className="border rounded-lg px-3 py-2 mt-1 mb-3 text-sm w-full bg-gray-100"
           type="email"
           id="email"
           name="email"
@@ -75,6 +119,7 @@ const RegisterForm = () => {
           onChange={handleChange}
         />
       </div>
+        {errors.email && <div className="text-red-600">{errors.email}</div>}
       <div>
         <label
           className="text-gray-800 font-semibold block my-3 text-md"
@@ -85,7 +130,7 @@ const RegisterForm = () => {
           Password
         </label>
         <input
-          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          className="border rounded-lg px-3 py-2 mt-1 mb-3 text-sm w-full bg-gray-100"
           type="password"
           id="password"
           name="password"
@@ -94,6 +139,7 @@ const RegisterForm = () => {
           onChange={handleChange}
         />
       </div>
+      {errors.password && <div className="text-red-600">{errors.password}</div>}
       <button
         type="submit"
         className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans "
