@@ -4,7 +4,7 @@ import {
   fetchUserTaskRequest,
   fetchUserTaskSuccess
 } from "../actions/usersAction";
-const apiEndPoint = "http://localhost:5000/api/auth";
+const apiEndPoint = "https://task-scheduling-api-v1.herokuapp.com/api/auth";
 
 export const getAllUser = () => {
   return async (dispatch) => {
