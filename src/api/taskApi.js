@@ -1,6 +1,8 @@
 import axios from "axios";
 import { fetchTaskRequest, fetchTaskSuccess, fetchTaskFailure } from "../actions/taskAction";
-import Swal from 'sweetalert2'
+import { toast } from "react-toastify";
+import { toastOptions } from "../utils/utils";
+
 const apiEndPoint = "https://task-scheduling-api-v1.herokuapp.com/api/task";
 
 export const createTask = (textValues) => {
@@ -8,19 +10,11 @@ export const createTask = (textValues) => {
     try {
       await axios.post(apiEndPoint + "/create", textValues);
       dispatch(getAllTask());
-      Swal.fire(
-        'Good job!',
-        'You Created Successfully !',
-        'success'
-      );
+      toast.success('Successfully Created Task', toastOptions);
       return {res : true}
     } catch (error) {
       console.log(error);
-      Swal.fire(
-        'Oops',
-        error.response.data,
-        'error'
-      )
+      toast.error(error.response.data, toastOptions);
     }
   };
 };
@@ -29,16 +23,15 @@ export const getAllTask = () => {
   return async (dispatch) => {
     try {
       dispatch(fetchTaskRequest());
+      // await new Promise((resolve) => {
+      //   setTimeout(resolve, 100);
+      // });
       const { data } = await axios.get(apiEndPoint + "/all-task");
       dispatch(fetchTaskSuccess(data));
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
-      Swal.fire(
-        'Oops',
-         error.response.data,
-        'error'
-      )
+      toast.error(error.response.data, toastOptions);
     }
   };
 };
@@ -50,11 +43,7 @@ export const changeTaskStatus = (task) => {
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
-      Swal.fire(
-        'Oops',
-        error.response.data,
-        'error'
-      )
+      toast.error(error.response.data, toastOptions);
     }
   };
 };
@@ -64,19 +53,11 @@ export const deleteTask= (task) => {
     try {
         await axios.delete(apiEndPoint + "/delete/" + task._id,task);
         dispatch(getAllTask());
-        Swal.fire(
-          'Good job!',
-          'You Delete Successfully !',
-          'success'
-        )
+        toast.success('Successfully Deleted Task', toastOptions);
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
-      Swal.fire(
-        'Oops',
-        error.response.data,
-        'error'
-      )
+      toast.error(error.response.data, toastOptions);
     }
   };
 };
@@ -87,19 +68,11 @@ export const updateTask= (task) => {
     try {
         await axios.put(apiEndPoint + "/update/" + task._id, task);
         dispatch(getAllTask());
-        Swal.fire(
-          'Good job!',
-          'You Updated Successfully !',
-          'success'
-        )
+        toast.success('Successfully Updated Task', toastOptions);
     } catch (error) {
       console.log(error);
       dispatch(fetchTaskFailure(error.message || "Unexpected Error!!!"));
-      Swal.fire(
-        'Oops',
-        error.response.data,
-        'error'
-      )
+      toast.error(error.response.data, toastOptions);
     }
   };
 };

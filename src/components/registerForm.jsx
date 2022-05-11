@@ -41,8 +41,8 @@ const RegisterForm = () => {
     if (input.userName === "") {
       isValid = false;
       errors.userName = "Please enter User Name";
-    } else if (input.userName.length < 10) {
-      errors.userName = "Name cannot exceed 20 characters";
+    } else if (input.userName.length < 8) {
+      errors.userName = "Name cannot exceed 10 characters";
     }
 
     if (input.email === "") {

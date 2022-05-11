@@ -7,7 +7,7 @@ import { getAllUser } from "../api/usersApi";
 import ListBox from "./listBox";
 import { useEffect } from "react";
 
-const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
+const CreateTaskModel = ({ open, setOpen, task, isEditing, isLoading }) => {
   const cancelButtonRef = useRef(null);
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                     <div className="mt-2">
                       <textarea
                         rows="3"
-                        className="text-sm text-gray-500 outline-none width: 367px"
+                        className="w-64 text-sm text-gray-500 outline-none"
                         placeholder="Please Add Your Task Here..."
                         onChange={handleChange}
                         name="description"
@@ -106,7 +106,6 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                       </label>
                       <input
                         type="time"
-                        id="appt"
                         name="time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
@@ -124,7 +123,9 @@ const CreateTaskModel = ({ open, setOpen, task, isEditing }) => {
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-sky-600 text-base font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:ml-3 sm:w-auto sm:text-sm hover:bg-sky-700"
-                  onClick={(event) => handleSubmit(event)}
+                  onClick={(event) => handleSubmit(event)
+                  }
+                  disabled={isLoading}
                 >
                   {isEditing ? "Update" : "Submit"}
                 </button>
