@@ -37,12 +37,13 @@ const RegisterForm = () => {
     const input = { ...inputValues };
     let errors = {};
     let isValid = true;
-    console.log(input.userName);
+    console.log(input.userName.length);
     if (input.userName === "") {
       isValid = false;
       errors.userName = "Please enter User Name";
-    } else if (input.userName.length < 8) {
-      errors.userName = "Name cannot exceed 10 characters";
+    } else if (input.userName.length > 8) {
+      isValid = false;
+      errors.userName = "Name cannot exceed 8 characters";
     }
 
     if (input.email === "") {
