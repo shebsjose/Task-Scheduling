@@ -63,7 +63,6 @@ export const deleteTask= (task) => {
 };
 
 export const updateTask= (task) => {
-  console.log(task);
   return async (dispatch) => {
     try {
         await axios.put(apiEndPoint + "/update/" + task._id, task);

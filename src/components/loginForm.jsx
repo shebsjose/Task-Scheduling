@@ -30,6 +30,10 @@ const LoginForm = () => {
         }
       });
     }
+    setInputValues({
+      email: "",
+      password: "",
+    }); 
   };
 
   const validate = () => {

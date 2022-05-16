@@ -6,19 +6,19 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_USER_TASK_REQUEST":
+    case "FETCH_USER_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "FETCH_USER_TASK_SUCCESS":
+    case "FETCH_USER_SUCCESS":
       return {
         ...state,
         loading: false,
         userTask: action.payload,
         error: "",
       };
-    case "FETCH_USER_TASK_FAILURE":
+    case "FETCH_USER_FAILURE":
       return {
         loading: false,
         userTask: [],

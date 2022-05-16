@@ -22,7 +22,7 @@ const taskReducer = (state = initialState, action) => {
       return {
         loading: false,
         task: [],
-        error: action.payload,
+        error                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    : action.payload,
       };
     default:
       return state;

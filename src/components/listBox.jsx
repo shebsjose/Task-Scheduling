@@ -2,8 +2,7 @@ const ListBox = ({ users, select, setSelect }) => {
   const handleChange = (event) => {
     setSelect(event.target.value);
   };
-  console.log(select);
-
+  
   return (
     <div className="relative mt-5">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

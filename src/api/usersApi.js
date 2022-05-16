@@ -1,22 +1,22 @@
 import axios from "axios";
 import {
-  fetchUserTaskFailure,
-  fetchUserTaskRequest,
-  fetchUserTaskSuccess
+  fetchUserFailure,
+  fetchUserRequest,
+  fetchUserSuccess
 } from "../actions/usersAction";
 const apiEndPoint = "https://task-scheduling-api-v1.herokuapp.com/api/auth";
 
 export const getAllUser = () => {
   return async (dispatch) => {
     try {
-      dispatch(fetchUserTaskRequest());
+      dispatch(fetchUserRequest());
       const {
         data
       } = await axios.get(apiEndPoint + "/get-user");
-      dispatch(fetchUserTaskSuccess(data));
+      dispatch(fetchUserSuccess(data));
     } catch (error) {
       console.log(error);
-      dispatch(fetchUserTaskFailure(error.message || "Unexpected Error!!!"));
+      dispatch(fetchUserFailure(error.message || "Unexpected Error!!!"));
     }
   };
 };

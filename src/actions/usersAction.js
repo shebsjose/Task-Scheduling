@@ -1,20 +1,20 @@
 
-export const fetchUserTaskRequest = () => {
+export const fetchUserRequest = () => {
     return {
-      type: "FETCH_USER_TASK_REQUEST",
+      type: "FETCH_USER_REQUEST",
     };
   };
   
-  export const fetchUserTaskSuccess = (userTask) => {
+  export const fetchUserSuccess = (userTask) => {
     return {
-      type: "FETCH_USER_TASK_SUCCESS",
+      type: "FETCH_USER_SUCCESS",
       payload: userTask,
     };
   };
   
-  export const fetchUserTaskFailure = (error) => {
+  export const fetchUserFailure = (error) => {
     return {
-      type: "FETCH_USER_TASK_FAILURE",
+      type: "FETCH_USER_FAILURE",
       payload: error,
     };
   };

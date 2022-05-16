@@ -37,7 +37,7 @@ const RegisterForm = () => {
     const input = { ...inputValues };
     let errors = {};
     let isValid = true;
-    console.log(input.userName.length);
+
     if (input.userName === "") {
       isValid = false;
       errors.userName = "Please enter User Name";

@@ -61,3 +61,7 @@
     -webkit-transform: rotateZ(360deg);
   }
 }
+
+@media(max-width:400px){
+       
+}
